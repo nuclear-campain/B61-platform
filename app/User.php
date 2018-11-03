@@ -28,4 +28,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * Method for hashing the given password in the application storage. 
+     * 
+     * @param  string $password The given or generated password from the application/form
+     * @return void
+     */
+    public function setPasswordAttribute(string $password): void
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }
