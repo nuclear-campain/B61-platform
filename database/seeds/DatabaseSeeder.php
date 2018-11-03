@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // Run other seeds in the application. 
         $this->call(CityScaffoldingSeeder::class);
+        $this->call(AclUserScaffoldingSeeder::class);
     }
 
     /**
