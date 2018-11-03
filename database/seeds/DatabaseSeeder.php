@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
             $this->command->warn('Data cleared, starting from blank database.');
         }
 
-
         // Run other seeds in the application. 
         $this->call(CityScaffoldingSeeder::class);
+        $this->call(AclUserScaffoldingSeeder::class);
     }
 
     /**
