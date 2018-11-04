@@ -69,6 +69,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->hasRole('admin') && ! Request::is('admin*'))
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            <i class="fe fe-home mr-1 text-secondary"></i> Admin panel
+                                        </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('account.settings') }}">
                                         <i class="fe fe-sliders mr-1 text-secondary"></i> Settings
                                     </a>
