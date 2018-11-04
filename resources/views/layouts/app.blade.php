@@ -33,7 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if (Request::is('admin*')) {{-- Authenticated user is admin section or has admin role --}}
+                            @include('layouts.partials.navbar-admin')
+                        @else {{-- Authenticated user is an normal user.  --}}
+                            @include('layouts.partials.navbar-user')
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,9 +59,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('account.settings') }}">
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
