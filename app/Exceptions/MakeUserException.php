@@ -21,6 +21,7 @@ class MakeUserException extends Exception
     {
         return new static("The email address [{$email}] is invalid");
     }
+    
     /**
      * The supplied email already exists.
      *
