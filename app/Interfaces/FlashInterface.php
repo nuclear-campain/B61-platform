@@ -11,13 +11,48 @@ use Laracasts\Flash\FlashNotifier;
  */
 interface FlashInterface
 {
-    public function message(string $title, string $message): FlashNotifier;
+    /**
+     * Flash a message.
+     *
+     * @param  string $message  The actual flash message.
+     * @param  string $title    The title for the actual flash message.
+     * @return FlashNotifier
+     */
+    public function message(string $message, string $title): FlashNotifier;
 
-    public function success(string $title, string $message): FlashNotifier;
+    /**
+     * Flash an success message.
+     *
+     * @param  string $message  The actual flash message.
+     * @param  string $title    The title for the actual flash message. Defaults to 'Success!'
+     * @return FlashNotifier
+     */
+    public function success(string $message, string $title = 'Success!'): FlashNotifier;
 
-    public function danger(string $title, string $message = 'Danger!'): FlashNotifier;
+    /**
+     * Flash an error message.
+     *
+     * @param  string $message  The actual flash message.
+     * @param  string $title    The title for the actual flash message. Defaults to 'Danger!'
+     * @return FlashNotifier
+     */
+    public function danger(string $message, string $title = 'Danger!'): FlashNotifier;
 
-    public function warning(string $title, string $message = 'Warning!'): FlashNotifier;
+    /**
+     * Flash an warning message.
+     *
+     * @param  string $message  The actual flash message.
+     * @param  string $title    The title for the actual flash message. Defaults to 'Warning!'
+     * @return FlashNotifier
+     */
+    public function warning(string $message, string $title = 'Warning!'): FlashNotifier;
 
-    public function info(string $title, string $message = 'Info!'): FlashNotifier;
+    /**
+     * Flash an information message.
+     *
+     * @param  string $message  The actual flash message.
+     * @param  string $title    The title for the actual flash message. Defaults to 'Info!'
+     * @return FlashNotifier
+     */
+    public function info(string $message, string $title = 'Info!'): FlashNotifier;
 }
