@@ -21,7 +21,7 @@ class FlashRepository implements FlashInterface
      */
     public function message(string $message, string $title): FlashNotifier
     {
-       return flash("<strong>{$title}</strong> {$message}");
+       return flash('<strong class="mr-2">' . $title . '</strong>' . $message);
     }
 
     /**
@@ -33,7 +33,7 @@ class FlashRepository implements FlashInterface
      */
     public function danger(string $message, string $title = 'Danger!'): FlashNotifier
     {
-        return $this->message($title, $message)->danger();
+        return $this->message($message, $title)->danger();
     }
 
     /**
@@ -45,7 +45,7 @@ class FlashRepository implements FlashInterface
      */
     public function warning(string $message, string $title = 'Warning!'): FlashNotifier
     {
-        return $this->message($title, $message)->warning();
+        return $this->message($message, $title)->warning();
     }
 
     /**
@@ -57,7 +57,7 @@ class FlashRepository implements FlashInterface
      */
     public function success(string $message, string $title = 'Success!'): FlashNotifier
     {
-        return $this->message($title, $message)->success();
+        return $this->message($message, $title)->success();
     }
 
     /**
@@ -69,6 +69,6 @@ class FlashRepository implements FlashInterface
      */
     public function info(string $message, string $title = 'Info!'): FlashNotifier
     {
-        return $this->message($title, $message)->info();
+        return $this->message($message, $title)->info();
     }
 }

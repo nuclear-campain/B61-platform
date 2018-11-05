@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Account;
 
+use App\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -9,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *
  * @package App\Http\Requests\Account
  */
-class InformationValidator extends FormRequest
+class InformationValidator extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,10 +19,7 @@ class InformationValidator extends FormRequest
      */
     public function authorize(): bool
     {
-        // No authorization check needed because the validator is only
-        // used for updating the current authenticated user.
-
-        return true;
+        return $this->auth->check();
     }
 
     /**
@@ -32,7 +30,8 @@ class InformationValidator extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255|unique:users,email,' . $this->auth->user()->id,
         ];
     }
 }

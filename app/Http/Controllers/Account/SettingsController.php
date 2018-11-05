@@ -17,7 +17,7 @@ class SettingsController extends Controller
 {
     /**
      * SettingsController constructor 
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -43,16 +43,13 @@ class SettingsController extends Controller
     /**
      * Update the account information settings.
      *
-     * @todo Implement route
-     * @todo Build up the validator
-     *
      * @param  InformationValidator $input The form request class that handles the validation.
      * @return RedirectResponse
      */
     public function updateInformation(InformationValidator $input): RedirectResponse
     {
-        if (Auth::user()->update($input->all())) {
-
+        if ($this->auth->user()->update($input->all())) {
+            $this->flashMessage->success('Your account information has been updated!')->important();
         }
 
         return redirect()->route('account.settings');
@@ -69,6 +66,13 @@ class SettingsController extends Controller
      */
     public function updateSecurity(SecurityValidator $input): RedirectResponse
     {
+        $user = $this->auth->user();
 
+        if ($user->update($input->all())) {
+            $this->auth->logoutOtherDevices($user->password);
+            $this->flashMessage->success('Your account security has been updated!')->important();
+        }
+
+        return redirect()->route('account.settings', ['type' => 'security']);
     }
 }
