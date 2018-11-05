@@ -3,13 +3,14 @@
 namespace App\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
 /**
  * Class SecurityValidator
  *
  * @package App\Http\Requests\Account
  */
-class SecurityValidator extends FormRequest
+class SecurityValidator extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,10 +19,7 @@ class SecurityValidator extends FormRequest
      */
     public function authorize(): bool
     {
-        // No authorization check needed because the validator is only
-        // used for updating the current authenticated user.
-
-        return true;
+        return $this->auth->check();
     }
 
     /**
@@ -29,10 +27,8 @@ class SecurityValidator extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            //
-        ];
+        return ['password' => 'required|string|min:6|confirmed'];
     }
 }

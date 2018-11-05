@@ -15,7 +15,7 @@
             </div>
 
             <div class="col-md-9">
-                <form class="card card-body" method="POST" action="">
+                <form class="card card-body" method="POST" action="{{ route('account.settings.security') }}">
                     @include ('flash::message') {{-- Flash session view partial --}}
 
                     @csrf               {{-- Form field protection --}}
