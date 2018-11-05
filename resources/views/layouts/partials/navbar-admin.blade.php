@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a class="nav-link">
+    <a class="nav-link" href="{{ route('users.web.dashboard') }}">
         Users
     </a>
 </li>
