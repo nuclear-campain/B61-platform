@@ -13,52 +13,62 @@ use Laracasts\Flash\FlashNotifier;
 class FlashRepository implements FlashInterface
 {
     /**
-     * @param string $message
-     * @param string $title
+     * Flash a message. 
+     * 
+     * @param  string $message The actual flash message. 
+     * @param  string $title   The title for the flash message.
      * @return FlashNotifier
      */
     public function message(string $message, string $title): FlashNotifier
     {
-        // TODO: Implement message() method.
+       return flash("<strong>{$title}</strong> {$message}");
     }
 
     /**
-     * @param string $message
-     * @param string $title
+     * Flash an danger message. 
+     * 
+     * @param  string $message  The actual flash message
+     * @param  string $title    The title for the flash message defaults to "Danger!"
      * @return FlashNotifier
      */
     public function danger(string $message, string $title = 'Danger!'): FlashNotifier
     {
-        // TODO: Implement danger() method.
+        return $this->message($title, $message)->danger();
     }
 
     /**
-     * @param string $message
-     * @param string $title
+     * Flash an warning message. 
+     * 
+     * @param  string $message  The actual flash message. 
+     * @param  string $title    The title for the flash message. Defaults to "Warning!"
      * @return FlashNotifier
      */
     public function warning(string $message, string $title = 'Warning!'): FlashNotifier
     {
-        // TODO: Implement warning() method.
+        return $this->message($title, $message)->warning();
     }
 
     /**
-     * @param string $message
-     * @param string $title
+     * Flash an success message. 
+     * 
+     * @param  string $message  The actual flash message. 
+     * @param  string $title    The title for the flash message. Defaults to "Success!"
      * @return FlashNotifier
      */
     public function success(string $message, string $title = 'Success!'): FlashNotifier
     {
-        // TODO: Implement success() method.
+        return $this->message($title, $message)->success();
     }
 
     /**
-     * @param string $message
-     * @param string $title
+     * Flash an info message. 
+     * 
+     * @param  string $message  The actual flash message. 
+     * @param  string $title    The title for the flash message. Defaults to "Info!"
      * @return FlashNotifier
      */
     public function info(string $message, string $title = 'Info!'): FlashNotifier
     {
-        // TODO: Implement info() method.
+        return $this->message($title, $message)->info();
     }
 }
