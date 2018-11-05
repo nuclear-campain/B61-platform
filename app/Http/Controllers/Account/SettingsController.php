@@ -58,9 +58,6 @@ class SettingsController extends Controller
     /**
      * Update the account security settings.
      *
-     * @todo Implement route
-     * @todo Build up the validator
-     *
      * @param  SecurityValidator $input The form request class that handles the validation.
      * @return RedirectResponse
      */

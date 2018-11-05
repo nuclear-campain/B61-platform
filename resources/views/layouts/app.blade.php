@@ -53,7 +53,7 @@
                         @else {{-- user is authenticated --}}
                             @if (Auth::user()->hasRole('admin'))
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('notifications.index') }}" class="nav-link">
                                         <i class="fe fe-bell"></i>
 
                                         <span style="margin-top: -.25rem;" class="badge align-middle badge-pill badge-danger">
