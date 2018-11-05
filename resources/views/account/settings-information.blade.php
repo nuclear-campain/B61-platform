@@ -16,11 +16,11 @@
 
             <div class="col-md-9">
                 <form method="POST" action="{{ route('account.settings.info') }}" class="card card-body">
-                    @include('flash::message', ['alertCard' => 'card-alert']) {{-- Flash session view partial --}}
+                    @include('flash::message')  {{-- Flash session view partial --}}
 
-                    @csrf                   {{-- Form field protection --}}
-                    @method('PATCH')        {{-- HTTP method spoofing --}}
-                    @form(Auth::user())     {{-- Bind the authenticated user data to the form --}}
+                    @csrf                       {{-- Form field protection --}}
+                    @method('PATCH')            {{-- HTTP method spoofing --}}
+                    @form(Auth::user())         {{-- Bind the authenticated user data to the form --}}
 
                     <div class="form-group">
                         <label for="inputName">Your name <span class="text-danger">*</span></label>
