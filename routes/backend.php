@@ -16,3 +16,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 // User Dashboard routes
 Route::get('/users', 'Account\UsersController@index')->name('users.web.dashboard');
 Route::get('/users/create', 'Account\UsersController@create')->name('users.create');
+Route::post('/users/create', 'Account\UsersController@store')->name('users.store');

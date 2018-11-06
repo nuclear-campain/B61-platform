@@ -50,6 +50,8 @@
                             <tr>
                                 <td><strong>#{{ $user->id }}</strong></td>
                                 <td>{{ $user->name }}</td>
+                                <td></td>
+                                <td>{{ $user->email }}</td>
                             </tr>
                         @empty {{-- There are no users found with the matching criteria --}}
                         @endforelse

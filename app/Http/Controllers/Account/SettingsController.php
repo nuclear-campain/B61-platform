@@ -58,6 +58,8 @@ class SettingsController extends Controller
     /**
      * Update the account security settings.
      *
+     * @todo Extra security layer -> User neeeds to give his current password for updating the user password.
+     * 
      * @param  SecurityValidator $input The form request class that handles the validation.
      * @return RedirectResponse
      */
