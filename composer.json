@@ -12,7 +12,9 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "league/csv": "^9.1",
-        "spatie/laravel-permission": "^2.23"
+        "mpociot/reanimate": "^1.0",
+        "spatie/laravel-permission": "^2.23",
+        "tightenco/quicksand": "^2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

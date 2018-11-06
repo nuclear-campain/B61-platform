@@ -60,6 +60,17 @@
                                 </td> {{-- // End status indicator --}}
 
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->created_at->diffForHumans() }}</td>
+
+                                <td> {{-- User options --}}
+                                    <span class="float-right">
+                                        @if ($user->trashed())
+                                            <a href="{{ route('users.delete.undo', $user) }}" class="no-underline text-success"><i class="fe fe-rotate-ccw"></i></a>
+                                        @else {{-- The user is active --}}
+                                            <a href="{{ route('users.delete', $user) }}" class="no-underline text-danger"><i class="fe fe-user-x"></i></a>
+                                        @endif
+                                    </span>
+                                </td> {{-- /// User options --}}
                             </tr>
                         @empty {{-- There are no users found with the matching criteria --}}
                         @endforelse

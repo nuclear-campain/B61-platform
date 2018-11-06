@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Account;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\{RedirectResponse, Request};
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use App\User;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\Users\CreateValidator;
 use App\Notifications\LoginCreated;
+use Mpociot\Reanimate\ReanimateModels;
 
 /**
  * Class UsersController
@@ -18,6 +18,8 @@ use App\Notifications\LoginCreated;
  */
 class UsersController extends Controller
 {
+    use ReanimateModels; 
+
     /**
      * UsersController constructor 
      * 
@@ -63,8 +65,6 @@ class UsersController extends Controller
     /**
      * Method for creating a new user in yhe application.
      * 
-     * @todo Implement user mailable that notifies the user. 
-     * 
      * @param  UserValidator $input The form request class that handles the validation. 
      * @param  User          $user  The model entity from the storage in the application.
      * @return RedirectResponse
@@ -79,5 +79,39 @@ class UsersController extends Controller
         }
 
         return redirect()->route('users.web.dashboard');
+    }
+
+    /**
+     * Method for deleting users in the application as admin. 
+     * 
+     * @param  Request $request     The request instance that holds all the request information.
+     * @param  User    $user        The entity form the user in the storage. 
+     * @return View|RedirectResponse 
+     */
+    public function destroy(Request $request, User $user) 
+    {
+        if ($request->method() === 'GET') {
+            return view('users.delete', compact('user'));
+        }
+
+        // Method is not identified as GET request DELETE
+        $this->validate($request, ['confirmation' => 'required']); // Confirm that the confirmation field is filled in.
+        $user->processDeleteRequest($request);
+
+        return redirect()->route('users.web.dashboard');
+    }
+
+    /**
+     * Undo the delete for the user in the application.
+     * 
+     * @param  int $user The unique resource entity identifier from the user.
+     * @return RedirectResponse
+     */
+    public function undoDeleteRoute(int $user): RedirectResponse
+    {
+        $user = User::onlyTrashed()->findOrfail($user);
+
+        $this->flashMessage->info('The login has been restored');
+        return $this->restoreModel($user->id, new User(), 'users.web.dashboard');
     }
 }

@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\{Builder, SoftDeletes};
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Cache;
+use App\Repositories\UserRepository;
 
 /**
  * Class User
  * 
  * @package App
  */
-class User extends Authenticatable
+class User extends UserRepository
 {
     use Notifiable, HasRoles, SoftDeletes;
 
