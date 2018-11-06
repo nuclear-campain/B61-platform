@@ -24,7 +24,7 @@
                     </div>
                 </div>
                     
-                <form class="ml-2">
+                <form method="GET" action="" class="ml-2">
                     <input type="text" class="form-control" placeholder="Search user">
                 </form>
             </div>
@@ -63,7 +63,7 @@
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
 
                                 <td> {{-- User options --}}
-                                    <span class="float-right">
+                                    <span class="float-right mr-1">
                                         @if ($user->trashed())
                                             <a href="{{ route('users.delete.undo', $user) }}" class="no-underline text-success"><i class="fe fe-rotate-ccw"></i></a>
                                         @else {{-- The user is active --}}
@@ -77,6 +77,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {{ $users->render() }} {{-- Pagination view partial --}}
         </div>
     </div>
 @endsection
