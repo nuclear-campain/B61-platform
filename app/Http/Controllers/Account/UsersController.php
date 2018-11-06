@@ -94,11 +94,8 @@ class UsersController extends Controller
     public function destroy(Request $request, User $user) 
     {
         if ($request->method() === 'GET') {
-            if (Gate::allows('same-user', $user)) {
-                return view('account.delete');
-            } 
-
-            return view('users.delete', compact('user'));
+            $viewPath = (Gate::allows('same-user', $user)) ? 'account.delete' : 'users.delete';
+            return view($viewPath, compact('user'));
         }
 
         // Method is not identified as GET request DELETE
