@@ -28,7 +28,7 @@ class UsersController extends Controller
     public function __construct() 
     {
         parent::__construct();
-        $this->middleware(['auth', 'role:admin']);
+        $this->middleware(['auth', 'role:admin']); // Because of the middleware we don't need any gates in the view.
     }
 
     /**
