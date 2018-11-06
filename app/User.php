@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\{Builder, SoftDeletes};
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class User
@@ -29,6 +30,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * Method for checking that the user is authenticated or not. 
+     * 
+     * @return bool
+     */
+    public function isOnline(): bool
+    {
+        return Cache::has('user-is-online-' . $this->id);
+    }
 
     /**
      * Method for hashing the given password in the application storage. 

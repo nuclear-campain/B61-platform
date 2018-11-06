@@ -50,7 +50,15 @@
                             <tr>
                                 <td><strong>#{{ $user->id }}</strong></td>
                                 <td>{{ $user->name }}</td>
-                                <td></td>
+                                
+                                <td> {{-- Status indicator --}}
+                                    @if($user->isOnline())
+                                        <span class="badge badge-success">Online</span>
+                                    @else {{-- The user is offline --}}
+                                        <span class="badge badge-danger">Offline</span>
+                                    @endif
+                                </td> {{-- // End status indicator --}}
+
                                 <td>{{ $user->email }}</td>
                             </tr>
                         @empty {{-- There are no users found with the matching criteria --}}
