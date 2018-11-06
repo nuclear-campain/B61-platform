@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Requests\ContactValidator;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
 
 /**
@@ -12,13 +13,8 @@ use Illuminate\Contracts\View\View;
  */
 class ContactController extends Controller
 {
-    /**
-     * Contact page for the application. 
-     * 
-     * @return View
-     */
-    public function index(): View
+    public function __invoke(ContactValidator $input): RedirectResponse
     {
-        return view('contact.index');
+
     }
 }
