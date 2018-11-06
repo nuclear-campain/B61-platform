@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Contact routes 
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::post('/contact/send', 'ContactController@send')->name('contact.send');
+
 // Account settings routes
 Route::get('/profile-settings/{type?}', 'Account\SettingsController@index')->name('account.settings');
 Route::patch('/profile-settings/info', 'Account\SettingsController@updateInformation')->name('account.settings.info');
