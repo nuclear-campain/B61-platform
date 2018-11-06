@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Account;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use App\User;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class UsersController
@@ -29,25 +31,37 @@ class UsersController extends Controller
      * Get the index panel for all the users in the application. 
      * 
      * @param  Request $request The request information bag used for filtering the users from the application. 
-     * @param  Users   $users   The resource model for the users. Mapping to $users variable.  
+     * @param  User    $users   The resource model for the users. Mapping to $users variable.
      * @return View
      */
     public function index(Request $request, User $users): View
     {
-        $users->query(); // Initiate a new users Query instance for the storage. 
-
         switch ($request->get('filter')) {
-            case 'deactivated': $users->deactivatedUsers(); break; // Get only the users that are locked out in the app. 
-            case 'deleted':     $users->deletedUsers();     break; // Get only the deleted user logins. 
-            case 'admin':       $users->adminUsers();       break; // Get only the application admin users. 
-            default:            $users = $users;            break; // No valid filter is given or the user wants all the users.
+            case 'deactivated': $users = $users->deactivatedUsers(); break;
+            case 'deleted':     $users = $users->deletedUsers();     break;
+            case 'admin':       $users = $users->adminUsers();       break;
+            default:            $users;                              break;
         }
 
         return view('users.dashboard', ['users' => $users->simplePaginate()]);
     }
 
-    public function create(): View
+    /**
+     * View for creating a new user in the application.
+     *
+     * @param  Role $roles The ACL roles for users in the application.
+     * @return View
+     */
+    public function create(Role $roles): View
     {
-        return view('users.create');
+        $roles = $roles->pluck('name', 'name'); // Duplicate attribute because the value in the form is not an integer.
+        return view('users.create', compact($roles));
+    }
+
+    public function store(UserValidator $input): RedirectResponse
+    {
+        if ($user = new User($input->all())) {
+
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\{Builder, SoftDeletes};
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -13,7 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -38,5 +39,27 @@ class User extends Authenticatable
     public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Scope for getting all the admin users out the storage.
+     *
+     * @param  Builder $query The query builder instance.
+     * @return Builder
+     */
+    public function scopeAdminUsers(Builder $query): Builder
+    {
+        return $query->role('admin');
+    }
+
+    /**
+     * Scope for only getting the deleted user out of the application.
+     *
+     * @param  Builder $query The query builder instance.
+     * @return Builder
+     */
+    public function scopeDeletedUsers(Builder $query): Builder
+    {
+        return $query->onlyTrashed();
     }
 }

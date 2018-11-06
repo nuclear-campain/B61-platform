@@ -30,4 +30,32 @@
             </div>
         </div>
     </div>
+
+    <div class="container py-3">
+        <div class="card card-body">
+            @include('flash::message') {{-- Flash session view partial --}}
+
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <th scope="col" class="border-top-0">#</th>
+                        <th scope="col" class="border-top-0">Name</th>
+                        <th scope="col" class="border-top-0">Status</th>
+                        <th scope="col" class="border-top-0">Email</th>
+                        <th scope="col" class="border-top-0">Created at</th>
+                        <th scope="col" class="border-top-0">&nbsp;</th>
+                    </thead>
+                    <tbody>
+                        @forelse ($users as $user)
+                            <tr>
+                                <td><strong>#{{ $user->id }}</strong></td>
+                                <td>{{ $user->name }}</td>
+                            </tr>
+                        @empty {{-- There are no users found with the matching criteria --}}
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
