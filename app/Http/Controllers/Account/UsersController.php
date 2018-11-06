@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
+use Gate;
 use Illuminate\Http\{RedirectResponse, Request};
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
@@ -84,6 +85,8 @@ class UsersController extends Controller
     /**
      * Method for deleting users in the application as admin. 
      * 
+     * @todo Build up the account.delete view.
+     * 
      * @param  Request $request     The request instance that holds all the request information.
      * @param  User    $user        The entity form the user in the storage. 
      * @return View|RedirectResponse 
@@ -91,6 +94,10 @@ class UsersController extends Controller
     public function destroy(Request $request, User $user) 
     {
         if ($request->method() === 'GET') {
+            if (Gate::allows('same-user', $user)) {
+                return view('account.delete');
+            } 
+
             return view('users.delete', compact('user'));
         }
 
