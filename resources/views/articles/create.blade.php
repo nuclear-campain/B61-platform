@@ -15,7 +15,7 @@
     </div>
 
     <div class="container py-3">
-        <form method="POST" action="" class="card card-body">
+        <form method="POST" action="{{ route('articles.store') }}" class="card card-body">
             @csrf {{-- Form field protection --}}
 
             <div class="form-row">
