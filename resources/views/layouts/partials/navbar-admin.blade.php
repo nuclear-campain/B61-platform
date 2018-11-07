@@ -11,7 +11,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="" class="nav-link">
+    <a href="{{ route('articles.dashboard') }}" class="nav-link">
         Articles
     </a>
 </li>

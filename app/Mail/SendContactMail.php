@@ -15,7 +15,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendContactMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    
+
     /**
      * The variable that holds all the contact form data.
      *
@@ -45,3 +45,4 @@ class SendContactMail extends Mailable implements ShouldQueue
             ->subject('Contact form has been filled in from ' . config('app.name'))
             ->replyTo($this->inputs['email'], "{$this->inputs['firstname']} {$this->inputs['lastname']}");
     }
+}

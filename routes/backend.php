@@ -19,3 +19,7 @@ Route::get('/users/create', 'Account\UsersController@create')->name('users.creat
 Route::post('/users/create', 'Account\UsersController@store')->name('users.store');
 Route::match(['get', 'delete'], '/users/delete/{user}', 'Account\UsersController@destroy')->name('users.delete');
 Route::get('/users/delete/undo/{user}', 'Account\UsersController@undoDeleteRoute')->name('users.delete.undo');
+
+// Article routes 
+Route::get('/articles/dashboard', 'Articles\BackendController@index')->name('articles.dashboard');
+Route::get('/articles/create', 'Articles\BackendController@create')->name('articles.create');
