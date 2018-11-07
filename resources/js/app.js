@@ -20,3 +20,26 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * Implementation of summernote WYSIWYG
+ */
+require('../../node_modules/summernote/dist/summernote-bs4');
+
+$(document).ready(function() {
+    $('#contentArea').summernote({
+        placeholder: 'Meh',
+        shortcuts: false,
+        disableResizeEditor: true,
+        height: 250,             
+        minHeight: null,            
+        maxHeight: null,             
+        focus: false,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+          ]
+    });
+});
