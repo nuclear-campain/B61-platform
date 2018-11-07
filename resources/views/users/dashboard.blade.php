@@ -64,6 +64,14 @@
 
                                 <td> {{-- User options --}}
                                     <span class="float-right mr-1">
+                                        <a href="" class="text-secondary no-underline">
+                                            <i class="fe fe-eye mr-1"></i>
+                                        </a>
+
+                                        <a href="" class="text-secondary no-underline mr-1">
+                                            <i class="fe fe-edit"></i>
+                                        </a>
+
                                         @if ($user->trashed())
                                             <a href="{{ route('users.delete.undo', $user) }}" class="no-underline text-success"><i class="fe fe-rotate-ccw"></i></a>
                                         @else {{-- The user is active --}}
