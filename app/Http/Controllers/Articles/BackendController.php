@@ -30,14 +30,14 @@ class BackendController extends Controller
     /**
      * Get the management dashboard for the news articles in the application.
      *
+     * @todo Implement search method. 
+     * 
      * @param  Request $request  The information request information bag.
      * @param  Article $articles The resource model for the article storage.
      * @return View
      */
     public function index(Request $request, Article $articles): View
     {
-        //! ->getIsDraftOnly(<indicator>); errors because it is not implemented in form and ERD
-
         switch ($request->get('filter')) { // Filter down the articles in the database.
             case 'published': $articles = $articles->getDraftsOnly(false);  break;
             case 'draft':     $articles = $articles->getDraftsOnly(true);   break;
@@ -77,7 +77,7 @@ class BackendController extends Controller
     /**
      * Delete a news article in the storage.
      *
-     * @todo Implement route
+     * @todo Implement route (View and routes file)
      * @todo Implement undo system
      *
      * @param  Article $article The resource entity from the article in the storage.

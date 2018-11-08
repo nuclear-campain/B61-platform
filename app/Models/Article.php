@@ -39,12 +39,23 @@ class Article extends Model
     /**
      * Shorthand helper or getting the draft articles out. 
      * 
-     * @param  Builder $query     The eloquent builder instance. 
+     * @param  Builder $query     The eloquent query builder instance. 
      * @param  bool    $indicator Determine with true/false if you want to get the drafts only or not. 
      * @return Builder
      */
     public function scopeGetDraftsOnly(Builder $query, bool $indicator): Builder 
     {
         return $query->whereIsDraft($indicator);
+    }
+
+    /**
+     * Shorthand helper for only getting the deleted the articles from the storage. 
+     * 
+     * @param  Builder $query The eloquent builder instance.  
+     * @return Builder
+     */
+    public function scopeDeletedArticles(Builder $query): Builder 
+    {
+        return $query->onlyTrashed();
     }
 }
