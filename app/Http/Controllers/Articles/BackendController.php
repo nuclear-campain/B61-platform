@@ -54,7 +54,8 @@ class BackendController extends Controller
      */
     public function create(): View
     {
-        return view('articles.create');
+        $statusTypes = [ 1 => 'I want to keep this articles as draft.', 0 => 'I want to publish the article.'];
+        return view('articles.create', compact('statusTypes'));
     }
 
     /**

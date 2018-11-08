@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function welcome(Article $article): View 
     {
-        return view('welcome', ['articles' => $article->take(3)->latest()->get()]);
+        return view('welcome', ['articles' => $article->whereIsDraft(false)->take(3)->latest()->get()]);
     }
 
     /**

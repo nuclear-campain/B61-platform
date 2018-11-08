@@ -19,10 +19,20 @@
             @csrf {{-- Form field protection --}}
 
             <div class="form-row">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-7">
                     <label for="inputTitle">Title <span class="text-danger">*</span></label>
-                    <input type="text"@input('title') placeholder="Article title" class="form-control col-md-7 @error('title', 'is-invalid')">
+                    <input type="text"@input('title') placeholder="Article title" class="form-control @error('title', 'is-invalid')">
                     @error('title')
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="inputStatus">Status <span class="text-danger">*</span></label>
+
+                    <select class="form-control @error('is_draft', 'is_invalid')" @input('is_draft') id="inputStatus">
+                        @options($statusTypes, 'is_draft', 1) {{-- 1 default to true and allow u to store as draft. --}}
+                    </select>
+
+                    @error('is_draft') {{-- Validation error view partial --}}
                 </div>
 
                 <div class="form-group col-md-12">

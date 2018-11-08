@@ -22,7 +22,7 @@ class Article extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'is_draft'];
 
     /**
      * Relation for the author data that is attached to the article.
@@ -31,7 +31,9 @@ class Article extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class)->withDefault(['name' => 'unknown user']);
+        return $this->belongsTo(User::class)->withDefault([
+            'name' => ' <span class="text-danger">Deleted user</spans>'
+        ]);
     }
 
     /**
