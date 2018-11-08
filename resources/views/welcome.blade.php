@@ -3,18 +3,18 @@
 @section('content')
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Nuclear monitor</h1>
+            <h1 class="display-4"><i class="fe fe-activity mr-1 text-danger"></i> Nuclear monitor</h1>
             <p class="lead mb-0">With this platform we want to compete for a nuclear weapon free belgium.</p>
 
             <hr class="my-3">
 
             <p class="lead">
-                <a href="" class="btn btn-outline-primary">
-                    <i class="fe fe-align-justify mr-1"></i> Monitor
+                <a href="" class="btn btn-outline-facebook">
+                    <i class="fe fe-facebook mr-1"></i> Facebook
                 </a>
 
-                <a href="" class="btn btn-outline-primary">
-                    <i class="fe fe-heart text-danger mr-1"></i> Support us
+                <a href="" class="btn btn-outline-twitter">
+                    <i class="fe fe-twitter mr-1"></i> Twitter
                 </a>
             </p>
 
@@ -44,5 +44,40 @@
                     </div>
                 @endforeach {{-- /// End article loop --}}
             </div> {{-- /// END content --}}
+
+            <div class="col-md-4"> {{-- Sidenav --}}
+                <div class="card tw-shadow p-2">
+                    <div class="d-flex align-items-center">
+                        <span class="stamp stamp-md shadow-sm bg-success mr-3">
+                            <i class="fe fe-check-circle"></i>
+                        </span>
+
+                        <div>
+                            <h5 class="m-0">0 <small>Cities</small></h5>
+                            <small class="text-muted">Accepted the charter declaration</small>
+                        </div>
+                    </div>
+
+                    <hr class="mt-2 mb-2">
+
+                    <div class="d-flex align-items-center">
+                        <span class="stamp stamp-md shadow-sm bg-success mr-3">
+                            <i class="fe fe-edit-3"></i>
+                        </span>
+
+                        <div>
+                            <h5 class="m-0">0 <small>Petition signatures</small></h5>
+                            <small class="text-muted">0 signatures today</small>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mt-2 mb-2">
+
+                <a href="" class="btn btn-success rounded btn-sm btn-lg btn-block">
+                    <i class="fe fe-edit-2 mr-1"></i> Sign petition
+                </a>
+            </div> {{-- /// Sidenav --}}
         </div>
+    </div>
 @endsection

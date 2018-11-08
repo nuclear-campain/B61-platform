@@ -27,7 +27,7 @@ class FrontendController extends Controller
     public function show(Article $article): View
     {
         if (Gate::allows('can-view-drafts', $article)) {
-            $article->addView(); // TODO: Need to look out if we can handle this with an observer
+            $article->addView(); // Increment the view counter with one. 
             return view('articles.show', compact('article'));
         }
        

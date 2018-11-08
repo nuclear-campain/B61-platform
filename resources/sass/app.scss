@@ -10,6 +10,7 @@
 @import '_modules/notifications';
 
 // Bootstrap
+@import "~bootstrap/scss/functions";
 @import '~bootstrap/scss/bootstrap';
 
 
@@ -17,6 +18,43 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+// Buttons partial 
+.btn-outline-facebook {
+  @include button-outline-variant(#3b5998);
+}
+
+.btn-outline-twitter {
+  @include button-outline-variant(#1da1f2);
+}
+
+// Stamp partial 
+.stamp {
+  color: #fff;
+  background: #868e96;
+  display: inline-block;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 .25rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.stamp-md {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.row-cards > .col,
+.row-cards > [class*='col-'] {
+display: -ms-flexbox;
+display: flex;
+-ms-flex-direction: column;
+flex-direction: column;
 }
 
 // Footer partial
