@@ -36,10 +36,12 @@ class BackendController extends Controller
      */
     public function index(Request $request, Article $articles): View
     {
+        //! ->getIsDraftOnly(<indicator>); errors because it is not implemented in form and ERD
+
         switch ($request->get('filter')) { // Filter down the articles in the database.
-            case 'published':   break;
-            case 'draft':       break;
-            case 'deleted':     break;
+            case 'published': $articles = $articles->getDraftsOnly(false);  break;
+            case 'draft':     $articles = $articles->getDraftsOnly(true);   break;
+            case 'deleted':   $articles = $articles->deletedArticles();     break;
         }
 
         return view('articles.dashboard', ['articles' => $articles->orderBy('created_at', 'DESC')->simplePaginate()]);

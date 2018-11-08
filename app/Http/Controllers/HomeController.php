@@ -26,6 +26,7 @@ class HomeController extends Controller
     /**
      * Get the application his welcome page. 
      * 
+     * @param  Article $article The model entity for getting the first 3 articles in the storage. 
      * @return View 
      */
     public function welcome(Article $article): View 
