@@ -95,6 +95,20 @@
         <main class="{{ isset($py) ? $py : 'py-4' }}">
             @yield('content')
         </main>
+
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">&copy; {{ config('app.name') }}</span>
+    
+                <div class="float-right">
+                    <a href="" class="no-underline text-muted">Privacy</a>
+                    <span class="text-muted">|</span>
+                    <a href="" class="no-underline text-muted">Terms of Service</a>
+                    <span class="text-muted">|</span>
+                    <a target="_blank" href="https://github.com/Scouting-Compass/Compass.app" class="no-underline text-muted">Github</a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
