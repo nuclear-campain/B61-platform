@@ -17,8 +17,8 @@ class UserPolicy
     /**
      * Determine if the given user is the same as the given user. 
      *
-     * @param  User  $authUser
-     * @param  User  $userModel
+     * @param  User  $authUser  The authenticated user entity. 
+     * @param  User  $userModel The user entity given from the users model. 
      * @return bool
      */
     public function sameUser(User $authUser, User $userModel): bool

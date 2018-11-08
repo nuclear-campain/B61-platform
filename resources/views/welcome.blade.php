@@ -38,7 +38,7 @@
                             <small class="align-middle text-secondary">Posted {{ $article->created_at->diffForHumans() }} by {{ $article->author->name }}</small>
 
                             <small class="text-muted float-right card-link">
-                                <a href="" class="align-middle card-link">Read more »</a>
+                                <a href="{{ route('article.show', $article) }}" class="align-middle card-link">Read more »</a>
                             </small>
                         </div>
                     </div>

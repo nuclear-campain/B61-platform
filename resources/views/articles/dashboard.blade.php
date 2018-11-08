@@ -67,7 +67,7 @@
 
                                 <td> {{-- Options --}}
                                     <span class="float-right">
-                                        <a href="" class="text-muted no-underline mr-1">
+                                        <a href="{{ route('article.show', $article) }}" class="text-muted no-underline mr-1">
                                             <i class="fe fe-eye"></i>
                                         </a>
 
