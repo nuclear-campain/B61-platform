@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\User;
+use CyrildeWit\EloquentViewable\Viewable;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Article extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Viewable;
 
     /**
      * Mass-assign fields for the storage table.

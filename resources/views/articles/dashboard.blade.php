@@ -17,6 +17,7 @@
                     </button>
 
                     <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('articles.dashboard') }}">All articles</a>
                         <a class="dropdown-item" href="{{ route('articles.dashboard', ['filter' => 'published']) }}">Published articles</a>
                         <a class="dropdown-item" href="{{ route('articles.dashboard', ['filter' => 'draft']) }}">Drafted articles</a>
                         <a class="dropdown-item" href="{{ route('articles.dashboard', ['filter' => 'deleted']) }}">Deleted articles</a>
@@ -36,12 +37,13 @@
 
             <div class="table-responsive mb-0">
 
-                <table class="table table-sm @if ($articles->count() > 0) table-hover @endif">
+                <table class="table table-sm @if (count($articles) > 0) table-hover @endif">
                     <thead>
                         <tr>
                             <th scope="col" class="border-top-0">Author</th>
                             <th scope="col" class="border-top-0">Title</th>
-                            <th scope="col" class="border-top-0">Publish Date</th>
+                            <th scope="col" class="border-top-0">Views</th>
+                            <th scope="col" class="border-top-0">Published</th>
                             <th scope="col" class="border-top-0">&nbsp;</th> {{-- Col reserved for the functions --}}
                         </tr>
                     </thead>
@@ -50,19 +52,20 @@
                             <tr>
                                 <td>{{ $article->author->name }}</td>
                                 <td>{{ $article->title }}</td>
+                                <td>{{ $article->getUniqueViews() }}<small>x</small></td>
                                 <td>{{ $article->created_at->diffForHumans() }}</td>
 
                                 <td> {{-- Options --}}
-                                    <span class="pull-right">
+                                    <span class="float-right">
                                         <a href="" class="text-muted no-underline mr-1">
                                             <i class="fe fe-eye"></i>
                                         </a>
 
-                                        <a href="{{ route('articles.edit', $article) }}" class="text-muted no-underline mr-1">
+                                        <a href="" class="text-muted no-underline mr-1">
                                             <i class="fe fe-edit"></i>
                                         </a>
 
-                                        <a href="{{ route('articles.destroy', $article) }}" class="text-danger no-underline">
+                                        <a href="" class="text-danger no-underline">
                                             <i class="fe fe-x-circle"></i>
                                         </a>
                                     </span>
@@ -77,6 +80,8 @@
                 </table>
 
             </div>
+
+            {{ $articles->links() }} {{-- Pagination view partial --}}
         </div>
     </div>
 @endsection

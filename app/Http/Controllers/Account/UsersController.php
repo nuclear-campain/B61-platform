@@ -14,28 +14,28 @@ use Mpociot\Reanimate\ReanimateModels;
 
 /**
  * Class UsersController
- * 
- * @package App\Http\Controllers\Account 
+ *
+ * @package App\Http\Controllers\Account
  */
 class UsersController extends Controller
 {
-    use ReanimateModels; 
+    use ReanimateModels;
 
     /**
-     * UsersController constructor 
-     * 
+     * UsersController constructor
+     *
      * @return void
      */
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         $this->middleware(['auth', 'role:admin']); // Because of the middleware we don't need any gates in the view.
     }
 
     /**
-     * Get the index panel for all the users in the application. 
-     * 
-     * @param  Request $request The request information bag used for filtering the users from the application. 
+     * Get the index panel for all the users in the application.
+     *
+     * @param  Request $request The request information bag used for filtering the users from the application.
      * @param  User    $users   The resource model for the users. Mapping to $users variable.
      * @return View
      */
@@ -45,7 +45,6 @@ class UsersController extends Controller
             case 'deactivated': $users = $users->deactivatedUsers(); break;
             case 'deleted':     $users = $users->deletedUsers();     break;
             case 'admin':       $users = $users->adminUsers();       break;
-            default:            $users;                              break;
         }
 
         return view('users.dashboard', ['users' => $users->simplePaginate()]);
@@ -65,8 +64,8 @@ class UsersController extends Controller
 
     /**
      * Method for creating a new user in yhe application.
-     * 
-     * @param  UserValidator $input The form request class that handles the validation. 
+     *
+     * @param  UserValidator $input The form request class that handles the validation.
      * @param  User          $user  The model entity from the storage in the application.
      * @return RedirectResponse
      */
@@ -83,15 +82,15 @@ class UsersController extends Controller
     }
 
     /**
-     * Method for deleting users in the application as admin. 
-     * 
+     * Method for deleting users in the application as admin.
+     *
      * @todo Build up the account.delete view.
-     * 
+     *
      * @param  Request $request     The request instance that holds all the request information.
-     * @param  User    $user        The entity form the user in the storage. 
-     * @return View|RedirectResponse 
+     * @param  User    $user        The entity form the user in the storage.
+     * @return View|RedirectResponse
      */
-    public function destroy(Request $request, User $user) 
+    public function destroy(Request $request, User $user)
     {
         if ($request->method() === 'GET') {
             $viewPath = (Gate::allows('same-user', $user)) ? 'account.delete' : 'users.delete';
@@ -107,7 +106,7 @@ class UsersController extends Controller
 
     /**
      * Undo the delete for the user in the application.
-     * 
+     *
      * @param  int $user The unique resource entity identifier from the user.
      * @return RedirectResponse
      */

@@ -30,13 +30,19 @@ class BackendController extends Controller
     /**
      * Get the management dashboard for the news articles in the application.
      *
+     * @param  Request $request  The information request information bag.
      * @param  Article $articles The resource model for the article storage.
      * @return View
      */
-    public function index(Article $articles): View
+    public function index(Request $request, Article $articles): View
     {
-        $articles = $articles->query(); // Initiate a new query instance.
-        return view('articles.dashboard', compact('articles'));
+        switch ($request->get('filter')) { // Filter down the articles in the database.
+            case 'published':   break;
+            case 'draft':       break;
+            case 'deleted':     break;
+        }
+
+        return view('articles.dashboard', ['articles' => $articles->orderBy('created_at', 'DESC')->simplePaginate()]);
     }
 
     /**
@@ -60,6 +66,24 @@ class BackendController extends Controller
         if ($article = $article->create($input->all())) {
             $article->author()->associate($this->auth->user())->save();
             $this->flashMessage->success('The news article has been stored!');
+        }
+
+        return redirect()->route('articles.dashboard');
+    }
+
+    /**
+     * Delete a news article in the storage.
+     *
+     * @todo Implement route
+     * @todo Implement undo system
+     *
+     * @param  Article $article The resource entity from the article in the storage.
+     * @return RedirectResponse
+     */
+    public function destroy(Article $article): RedirectResponse
+    {
+        if ($article->destroy()) {
+            $this->flashMessage->success("The article <strong>{$article->title}</strong> has been deleted.")->important();
         }
 
         return redirect()->route('articles.dashboard');
