@@ -41,6 +41,7 @@
                     <thead>
                         <tr>
                             <th scope="col" class="border-top-0">Author</th>
+                            <th scope="col" class="border-top-0">Status</th>
                             <th scope="col" class="border-top-0">Title</th>
                             <th scope="col" class="border-top-0">Views</th>
                             <th scope="col" class="border-top-0">Published</th>
@@ -51,6 +52,15 @@
                         @forelse ($articles as $article) {{-- There are articles found in the storage --}}
                             <tr>
                                 <td>{{ $article->author->name }}</td>
+
+                                <td> {{-- Status indicator --}}
+                                    @if ($article->is_draft) 
+                                        <span class="badge badge-primary">Draft</span>
+                                    @else {{-- The article has been published --}}
+                                        <span class="badge badge-success">Published</span>
+                                    @endif
+                                </td> {{-- /// END status indicator --}}
+
                                 <td>{{ $article->title }}</td>
                                 <td>{{ $article->getUniqueViews() }}<small>x</small></td>
                                 <td>{{ $article->created_at->diffForHumans() }}</td>
