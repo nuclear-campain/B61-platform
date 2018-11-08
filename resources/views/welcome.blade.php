@@ -28,17 +28,14 @@
                     <div class="card mb-3">
                         <div class="card-body pb-1 mb-2">
                             <h5 class="card-title mb-1 brand-title">{{ ucfirst($article->title) }}</h5>
-                            <small class="card-subtitle mb-2 text-muted">
-                                Published {{ $article->created_at->diffForHumans() }}
-                            </small>
 
-                            <p class="card-text pt-1">
+                            <p class="card-text mb-0 pt-1">
                                 {!! \Illuminate\Support\Str::words(strip_tags($article->content), 30) !!}
                             </p>
 
-                            <hr class="mb-1 mt-1">
+                            <hr style="margin-top: 7px;" class="mb-1">
 
-                            <small class="align-middle text-secondary">{{ $article->author->name }}</small>
+                            <small class="align-middle text-secondary">Posted {{ $article->created_at->diffForHumans() }} by {{ $article->author->name }}</small>
 
                             <small class="text-muted float-right card-link">
                                 <a href="" class="align-middle card-link">Read more »</a>
