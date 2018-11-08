@@ -26,7 +26,7 @@
             <div class="col-md-8"> {{-- Content --}}
                 @foreach ($articles as $article) {{-- Article loop --}}
                     <div class="card mb-3">
-                        <div class="card-body pb-1 mb-3">
+                        <div class="card-body pb-1 mb-2">
                             <h5 class="card-title mb-1 brand-title">{{ ucfirst($article->title) }}</h5>
                             <small class="card-subtitle mb-2 text-muted">
                                 Published {{ $article->created_at->diffForHumans() }}
@@ -36,13 +36,13 @@
                                 {!! \Illuminate\Support\Str::words(strip_tags($article->content), 30) !!}
                             </p>
 
-                            <hr class="mb-2 mt-2">
+                            <hr class="mb-1 mt-1">
 
-                            <span class="align-middle text-secondary">{{ $article->author->name }}</span>
+                            <small class="align-middle text-secondary">{{ $article->author->name }}</small>
 
-                            <span class="text-muted float-right card-link">
+                            <small class="text-muted float-right card-link">
                                 <a href="" class="align-middle card-link">Read more »</a>
-                            </span>
+                            </small>
                         </div>
                     </div>
                 @endforeach {{-- /// End article loop --}}

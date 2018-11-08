@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@dashboard')->name('home');
 
 // User Dashboard routes
 Route::get('/users', 'Account\UsersController@index')->name('users.web.dashboard');
