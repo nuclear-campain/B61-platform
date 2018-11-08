@@ -21,6 +21,7 @@ Route::match(['get', 'delete'], '/users/delete/{user}', 'Account\UsersController
 Route::get('/users/delete/undo/{user}', 'Account\UsersController@undoDeleteRoute')->name('users.delete.undo');
 
 // Article routes
+Route::get('/articles/search', 'Articles\BackendController@search')->name('articles.search');
 Route::get('/articles/dashboard', 'Articles\BackendController@index')->name('articles.dashboard');
 Route::get('/articles/create', 'Articles\BackendController@create')->name('articles.create');
 Route::post('/articles/create', 'Articles\BackendController@store')->name('articles.store');

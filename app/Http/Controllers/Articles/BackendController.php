@@ -29,10 +29,8 @@ class BackendController extends Controller
 
     /**
      * Get the management dashboard for the news articles in the application.
-     *
-     * @todo Implement search method. 
      * 
-     * @param  Request $request  The information request information bag.
+     * @param  Request $request  The request information collection instance.
      * @param  Article $articles The resource model for the article storage.
      * @return View
      */
@@ -45,6 +43,22 @@ class BackendController extends Controller
         }
 
         return view('articles.dashboard', ['articles' => $articles->orderBy('created_at', 'DESC')->simplePaginate()]);
+    }
+
+    /**
+     * Method for getting the result from the search in the application
+     * 
+     * @param  Request $request  The request information collection instance. 
+     * @param  Article $articles The resource model for the article storage. 
+     * @return View 
+     */
+    public function search(Request $request, Article $articles): View 
+    {
+        $term     = $request->search; // Map the given user input to the term variable. 
+        $articles = $articles->where('title', 'LIKE', "%{$term}%")->orWhere('content', 'LIKE', "%{$term}%")
+            ->orderBy('created_at', 'DESC')->simplePaginate();
+
+        return view('articles.dashboard', compact('articles'));
     }
 
     /**

@@ -24,8 +24,8 @@
                     </div>
                 </div>
 
-                <form class="ml-2" action="" method="POST">
-                    <input type="text" class="form-control" placeholder="Search article">
+                <form class="ml-2" action="{{ route('articles.search') }}" method="GET">
+                    <input type="text" class="form-control" @input('search', app('request')->input('search')) placeholder="Search article">
                 </form>
             </div>
         </div>
