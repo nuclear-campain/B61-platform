@@ -45,7 +45,13 @@
                                 <strong class="text-gray-dark">{{ $article->author->name }}</strong>
                             </div>
 
-                            <span class="d-block">@username</span>
+                            <span class="d-block">
+                                @if ($article->author->bio === null)
+                                    {{ ucfirst($article->author->name) }} is an admin on {{ config('app.name') }}.
+                                @else {{-- User has filled in his bio --}}
+                                    {{ ucfirst($article->author->bio) }}
+                                @endif 
+                            </span>
                         </div>
                     </div>
                 </div>

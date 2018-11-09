@@ -22,10 +22,12 @@
                     @method('PATCH')            {{-- HTTP method spoofing --}}
                     @form(Auth::user())         {{-- Bind the authenticated user data to the form --}}
 
-                    <div class="form-group">
-                        <label for="inputName">Your name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('name', 'is-invalid')" id="inputName" placeholder="Your name" @input('name')>
-                        @error('name')
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Your name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('name', 'is-invalid')" id="inputName" placeholder="Your name" @input('name')>
+                            @error('name')
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -37,6 +39,11 @@
                         @else {{-- No validation errors are found --}}
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputBio">Describe yourself shortly</label>
+                        <textarea @input('bio') rows="4" class="form-control" placeholder="Keep it as short as possible">@text('bio')</textarea>
                     </div>
 
                     <hr class="mt-0 border-grey">

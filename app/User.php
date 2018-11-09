@@ -22,7 +22,7 @@ class User extends UserRepository
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'bio', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
