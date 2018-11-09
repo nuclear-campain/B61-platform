@@ -48,7 +48,12 @@ class SettingsController extends Controller
      */
     public function updateInformation(InformationValidator $input): RedirectResponse
     {
-        if ($this->auth->user()->update($input->all())) {
+        $user = $this->auth->user();
+
+        if ($user->update($input->all())) {
+            $user->clearMediaCollection("user-{$user->id}"); 
+            $user->addMediaFromRequest('avatar')->toMediaCollection("user-{$user->id}");
+            
             $this->flashMessage->success('Your account information has been updated!')->important();
         }
 

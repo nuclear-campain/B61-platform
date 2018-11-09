@@ -14,6 +14,7 @@
         "laravel/tinker": "^1.0",
         "league/csv": "^9.1",
         "mpociot/reanimate": "^1.0",
+        "spatie/laravel-medialibrary": "^7.5",
         "spatie/laravel-permission": "^2.23",
         "tightenco/quicksand": "^2.0"
     },

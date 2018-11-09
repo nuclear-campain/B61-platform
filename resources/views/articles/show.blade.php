@@ -39,7 +39,7 @@
             <div class="col-md-4">
                 <div class="card card-body mb-3 p-3">
                     <div class="media text-muted">
-                        <img class="mr-2 rounded" style="width: 32px; height: 32px;" src="https://via.placeholder.com/150">
+                        <img class="mr-2 rounded shadow-sm" style="width: 32px; height: 32px;" src="{{ $article->author->getFirstMediaUrl('user-'. $article->author->id, 'avatar') }}">
                         <div class="media-body mb-0 small lh-125">
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <strong class="text-gray-dark">{{ $article->author->name }}</strong>

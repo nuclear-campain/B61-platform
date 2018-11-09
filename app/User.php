@@ -7,15 +7,17 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Cache;
 use App\Repositories\UserRepository;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 
 /**
  * Class User
  * 
  * @package App
  */
-class User extends UserRepository
+class User extends UserRepository implements HasMedia
 {
-    use Notifiable, HasRoles, SoftDeletes;
+    use Notifiable, HasRoles, SoftDeletes, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +41,18 @@ class User extends UserRepository
     public function isOnline(): bool
     {
         return Cache::has('user-is-online-' . $this->id);
+    }
+
+    /**
+     * Modify the user his upload image for the avatar. To meet the standards
+     * 
+     * @param  null|Media The instance from the resource object.
+     * @return void
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $user = auth()->user();
+        $this->addMediaConversion('avatar')->width(32)->height(32)->nonQueued();      
     }
 
     /**

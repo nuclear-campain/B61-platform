@@ -15,7 +15,7 @@
             </div>
 
             <div class="col-md-9">
-                <form method="POST" action="{{ route('account.settings.info') }}" class="card card-body">
+                <form method="POST" action="{{ route('account.settings.info') }}" class="card card-body"  enctype="multipart/form-data">
                     @include('flash::message')  {{-- Flash session view partial --}}
 
                     @csrf                       {{-- Form field protection --}}
@@ -27,6 +27,11 @@
                             <label for="inputName">Your name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('name', 'is-invalid')" id="inputName" placeholder="Your name" @input('name')>
                             @error('name')
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="inputAvatar">Avatar</label>
+                            <input type="file" class="form-control-file" @input('avatar') id="inputAvatar">
                         </div>
                     </div>
 
@@ -41,10 +46,12 @@
                         @endif
                     </div>
 
-                    <div class="form-group">
-                        <label for="inputBio">Describe yourself shortly</label>
-                        <textarea @input('bio') rows="4" class="form-control" placeholder="Keep it as short as possible">@text('bio')</textarea>
-                    </div>
+                    @if (Auth::user()->hasRole('admin'))
+                        <div class="form-group">
+                            <label for="inputBio">Describe yourself shortly</label>
+                            <textarea id="inputBio" @input('bio') rows="4" class="form-control" placeholder="Keep it as short as possible">@text('bio')</textarea>
+                        </div>
+                    @endif
 
                     <hr class="mt-0 border-grey">
 
