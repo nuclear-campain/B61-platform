@@ -27,7 +27,7 @@
                 <div class="card card-body mb-3">
                     <h5 class="border-bottom border-gray pb-1 mb-2">{{ ucfirst($article->title) }}</h5>
                     <small class="align-middle mb-2 text-secondary">
-                        Posted 6 minutes ago by Liza Kris
+                        Posted {{ $article->created_at->diffForHumans() }} by {{ $article->author->name }}
                         <a href="#" class="no-underline float-right">
                             <i class="fe fe-message-square"></i> Comments (3)
                         </a>
