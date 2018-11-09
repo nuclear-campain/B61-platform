@@ -10,28 +10,30 @@ use App\Models\Article;
 use Illuminate\Http\Response;
 
 /**
- * Class FrontendController 
- * 
+ * Class FrontendController
+ *
  * @package App\Http\Controllers\Articles
  */
 class FrontendController extends Controller
 {
     /**
-     * Method for displaying news articles in the application. 
-     * 
+     * Method for displaying news articles in the application.
+     *
      * @see \App\Policies\ArticlePolicy@canViewDrafts() => View policy
-     * 
-     * @param  Article $article The storage entity from the article. 
-     * @return View 
+     *
+     * @param  Article $article The storage entity from the article.
+     * @return View
      */
     public function show(Article $article): View
     {
         if (Gate::allows('can-view-drafts', $article)) {
-            $article->addView(); // Increment the view counter with one. 
-            return view('articles.show', compact('article'));
+            $article->addView(); // Increment the view counter with one.
+            $comments = $article->comments()->simplePaginate(7);
+
+            return view('articles.show', compact('article', 'comments'));
         }
-       
+
         // Throw an HTTP 404 response when the user is not authorized to view draft articles.
-        abort(Response::HTTP_NOT_FOUND); 
+        abort(Response::HTTP_NOT_FOUND);
     }
 }

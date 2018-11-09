@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 
 /**
  * Class User
- * 
+ *
  * @package App
  */
 class User extends UserRepository implements HasMedia
@@ -34,8 +34,8 @@ class User extends UserRepository implements HasMedia
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * Method for checking that the user is authenticated or not. 
-     * 
+     * Method for checking that the user is authenticated or not.
+     *
      * @return bool
      */
     public function isOnline(): bool
@@ -45,19 +45,19 @@ class User extends UserRepository implements HasMedia
 
     /**
      * Modify the user his upload image for the avatar. To meet the standards
-     * 
+     *
      * @param  null|Media The instance from the resource object.
      * @return void
      */
     public function registerMediaConversions(Media $media = null)
     {
         $user = auth()->user();
-        $this->addMediaConversion('avatar')->width(32)->height(32)->nonQueued();      
+        $this->addMediaConversion('avatar')->width(32)->height(32)->nonQueued();
     }
 
     /**
-     * Method for hashing the given password in the application storage. 
-     * 
+     * Method for hashing the given password in the application storage.
+     *
      * @param  string $password The given or generated password from the application/form
      * @return void
      */
