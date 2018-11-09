@@ -11,5 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix // Laravel asset runner
+
+    // Application scoffolding
+    .js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+
+    // Authentication scaffolding 
+    .copyDirectory('resources/img', 'public/img')
+    .js('resources/js/auth.js', 'public/js')
+    .sass('resources/sass/auth.scss', 'public/css');
