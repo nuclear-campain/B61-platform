@@ -42,11 +42,11 @@
                     <ul class="navbar-nav ml-auto"> {{-- Right Side Of Navbar --}}
                         @guest {{-- Authentication Links --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"><i class="mr-1 fe fe-log-in"></i> {{ __('Login') }}</a>
                             </li>
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"><i class="mr-1 fe fe-user-plus"></i> {{ __('Register') }}</a>
                                 @endif
                             </li>
                         @else {{-- user is authenticated --}}
@@ -78,7 +78,7 @@
                                         <i class="fe fe-sliders mr-1 text-secondary"></i> Settings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fe fe-power mr-1 text-danger"></i> {{ __('Logout') }}
+                                        <i class="fe fe-log-out mr-1 text-danger"></i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -99,7 +99,7 @@
         <footer class="footer">
             <div class="container">
                 <span class="text-muted">&copy; {{ config('app.name') }}</span>
-    
+
                 <div class="float-right">
                     <a href="" class="no-underline text-muted">Privacy</a>
                     <span class="text-muted">|</span>
