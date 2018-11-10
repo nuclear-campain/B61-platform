@@ -15,12 +15,13 @@ Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes();
 
-// Contact routes 
+// Contact routes
 Route::view('/contact', 'contact.index')->name('contact');
 Route::post('/contact/send', 'ContactController')->name('contact.send');
 
 // Article routes
 Route::get('/article/{article}', 'Articles\FrontendController@show')->name('article.show');
+Route::post('/article/{article}/comment', 'Articles\Comments\CommentController@comment')->name('article.comment');
 
 // Account settings routes
 Route::get('/profile-settings/{type?}', 'Account\SettingsController@index')->name('account.settings');

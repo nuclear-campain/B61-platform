@@ -29,6 +29,13 @@
   @include button-outline-variant(#1da1f2);
 }
 
+a.disabled {
+  /* Make the disabled links grayish*/
+  color: gray;
+  /* And disable the pointer events */
+  pointer-events: none;
+}
+
 // Stamp partial 
 .stamp {
   color: #fff;

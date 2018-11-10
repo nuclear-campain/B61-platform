@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use App\Models\Article;
 use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Class FrontendController
@@ -28,9 +29,10 @@ class FrontendController extends Controller
     {
         if (Gate::allows('can-view-drafts', $article)) {
             $article->addView(); // Increment the view counter with one.
-            $comments = $article->comments()->simplePaginate(7);
+            $comments = $article->comments()->orderBy('created_at', 'DESC')->simplePaginate(5);
+            $commentsCount = $article->comments()->count();
 
-            return view('articles.show', compact('article', 'comments'));
+            return view('articles.show', compact('article', 'comments', 'commentsCount'));
         }
 
         // Throw an HTTP 404 response when the user is not authorized to view draft articles.
