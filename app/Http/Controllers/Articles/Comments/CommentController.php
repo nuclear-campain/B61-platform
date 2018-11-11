@@ -47,8 +47,6 @@ class CommentController extends Controller
     /**
      * Function for displaying the dit form in the application.
      * 
-     * @todo Implement route 
-     * 
      * @see \App\Policies\CommentPolicy@editComment()
      * 
      * @param  Comment $comment The comment entity from the storage. 
@@ -57,7 +55,12 @@ class CommentController extends Controller
     public function edit(Comment $comment): View
     {
         $this->authorize('edit-comment', $comment);     
-        return view('comments.edit', comment('comment'));
+        return view('comments.edit', compact('comment'));
+    }
+
+    public function update(): RedirectResponse
+    {
+        // TODO: Build up the function
     }
 
     /**

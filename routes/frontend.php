@@ -25,6 +25,7 @@ Route::post('/article/{article}/comment', 'Articles\Comments\CommentController@c
 
 // Comment routes
 Route::get('comment/delete/{comment}', 'Articles\Comments\CommentController@destroy')->name('comment.delete');
+Route::get('comment/edit/{comment}', 'Articles\Comments\CommentController@edit')->name('comment.edit');
 
 // Account settings routes
 Route::get('/profile-settings/{type?}', 'Account\SettingsController@index')->name('account.settings');

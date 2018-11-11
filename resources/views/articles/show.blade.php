@@ -74,7 +74,7 @@
                                 @if (Auth::check()) {{-- Only authenticated users can use the options --}}
                                     <div class="mb-1">
                                         @if (Auth::user()->can('edit-comment', $comment))
-                                            <a href="" class="small no-underline mr-1 text-secondary"><i class="fe fe-edit-2"></i> Edit comment</a>
+                                            <a href="{{ route('comment.edit', $comment) }}" class="small no-underline mr-1 text-secondary"><i class="fe fe-edit-2"></i> Edit comment</a>
                                         @endif
                                         
                                         @if (Auth::user()->can('delete-comment', $comment))
