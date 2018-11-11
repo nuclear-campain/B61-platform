@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a class="nav-link">
+    <a href="{{ route('monitor.web.dashboard') }}" class="nav-link">
         Monitor
     </a>
 </li>
