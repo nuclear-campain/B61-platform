@@ -57,65 +57,73 @@
                 </div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-8"> {{-- Comment section --}}
                 <div class="card card-body mb-3">
                     <h6 class="border-bottom border-gray pb-1 mb-2"><a id="comments"></a>{{ $commentsCount }} Comments</h6>
 
                     @forelse ($comments as $comment) {{-- Loop through the comments --}}
                         <div class="media small text-muted pt-2">
-		<img src="" alt="32x32"  class="mr-2 shadow-sm rounded" style="width: 32px; height: 32px;">
-		<div class="card card-text border-0 mb-0">
-            <div class="d-flex w-100">
-                <div class="float-left">
-					<strong class="text-gray-dark">Prof. Prince Davis</strong>
-                    - 35 minutes ago
-                </div>
-            </div>
+		                    <img src="" alt="32x32"  class="mr-2 shadow-sm rounded" style="width: 32px; height: 32px;">
+		                    <div class="card card-text border-0 mb-0">
+                                <div class="d-flex w-100">
+                                    <div class="float-left">
+                                        <strong class="text-gray-dark">{{ $comment->commentator->name }}</strong> - {{ $comment->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
 
-            <div class="mb-1">
-                <a href="" class="small no-underline mr-1 text-secondary"></span><i class="fe fe-edit-2"></i> Edit comment</a>
-                <a href="" class="small no-underline text-danger"></span><i class="fe fe-x-circle"></i> Delete comment</a>
-                <a href="" class="small no-underline text-danger"></span><i class="fe fe-alert-octagon"></i> Report comment</a>
-            </div>
+                                @if (Auth::check()) {{-- Only authenticated users can use the options --}}
+                                    <div class="mb-1">
+                                        @if (Auth::user()->can('edit-comment', $comment))
+                                            <a href="" class="small no-underline mr-1 text-secondary"><i class="fe fe-edit-2"></i> Edit comment</a>
+                                        @endif
+                                        
+                                        @if (Auth::user()->can('delete-comment', $comment))
+                                            <a href="{{ route('comment.delete', $comment) }}" class="small no-underline text-danger"><i class="fe fe-x-circle"></i> Delete comment</a>
+                                        @else 
+                                            <a href="" class="small no-underline text-danger"><i class="fe fe-alert-octagon"></i> Report comment</a>
+                                        @endcan
+                                    </div>
+                                @endif
 
-            <span>{{ $comment->comment }}</span>
-		</div>
-    </div>
-
-    @if (! $loop->last)
-        <hr class="mt-2 mb-0">
-    @endif
-
-                    @empty {{-- No comments are found in the application.  --}}
-                        <p class="card-text text-secondary mb-1">There are no comments at this time.</p>
-                    @endforelse {{-- End comment loop  --}}
-
-                    {{ $comments->fragment('comments')->links('comments.pagination') }}
-
-                    <hr class="mt-2 mb-2">
-
-                    @auth
-                        <form action="{{ route('article.comment', $article) }}" method="POST"> {{-- Comment form --}}
-                            @csrf {{-- Form field protection --}}
-                            <div class="form-group">
-                                <textarea class="form-control @error('comment', 'is-invalid')" @input('comment') placeholder="Your comment" id="exampleFormControlTextarea1" rows="3">@text('comment')</textarea>
-                                @error('comment')
-                            </div>
-
-                            <div class="form-group mb-0">
-                                <button class="btn btn-sm btn-outline-success">
-                                    <i class="fe fe-message-square mr-1"></i> Comment
-                                </button>
-                            </div>
-                        </form> {{-- /// END comment form --}}
-                    @else
-                        <div class="alert alert-info alert-important mb-0" role="alert">
-                            Please <a href="{{ route('login') }}"><strong>sign in</strong></a> or <a href="{{ route('register') }}"><strong>create an account</strong></a> to participate in this conversation.
+                                {{ $comment->comment }}
+		                    </div>
                         </div>
-                    @endauth
+
+                        @if (! $loop->last) {{-- This comment is not the latest so we need a breakline --}}
+                            <hr class="mt-2 mb-0">
+                        @endif
+
+                        @empty {{-- No comments are found in the application.  --}}
+                            <p class="card-text text-secondary mb-1">There are no comments at this time.</p>
+                        @endforelse {{-- End comment loop  --}}
+
+                        {{ $comments->fragment('comments')->links('comments.pagination') }}
+
+                        <hr class="mt-2 mb-2">
+
+                        @auth {{-- User is authenticated --}}
+                            <form action="{{ route('article.comment', $article) }}" method="POST"> {{-- Comment form --}}
+                                @csrf {{-- Form field protection --}}
+                                
+                                <div class="form-group">
+                                    <textarea class="form-control @error('comment', 'is-invalid')" @input('comment') placeholder="Your comment" id="exampleFormControlTextarea1" rows="3">@text('comment')</textarea>
+                                    @error('comment')
+                                </div>
+
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fe fe-message-square mr-1"></i> Comment
+                                    </button>
+                                </div>
+                            </form> {{-- /// END comment form --}}
+                        @else
+                            <div class="alert alert-info alert-important mb-0" role="alert">
+                                Please <a href="{{ route('login') }}"><strong>sign in</strong></a> or <a href="{{ route('register') }}"><strong>create an account</strong></a> to participate in this conversation.
+                            </div>
+                        @endauth
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

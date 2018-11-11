@@ -23,6 +23,9 @@ Route::post('/contact/send', 'ContactController')->name('contact.send');
 Route::get('/article/{article}', 'Articles\FrontendController@show')->name('article.show');
 Route::post('/article/{article}/comment', 'Articles\Comments\CommentController@comment')->name('article.comment');
 
+// Comment routes
+Route::get('comment/delete/{comment}', 'Articles\Comments\CommentController@destroy')->name('comment.delete');
+
 // Account settings routes
 Route::get('/profile-settings/{type?}', 'Account\SettingsController@index')->name('account.settings');
 Route::patch('/profile-settings/info', 'Account\SettingsController@updateInformation')->name('account.settings.info');
