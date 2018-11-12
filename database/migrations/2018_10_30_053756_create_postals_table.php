@@ -19,6 +19,7 @@ class CreatePostalsTable extends Migration
         Schema::create('postals', function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('code')->unique();
+            $table->string('charter_status')->default('Pending');
             $table->timestamps();
         });
     }

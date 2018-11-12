@@ -5,7 +5,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="" class="nav-link">
+    <a href="{{ route('monitor.admin.dashboard') }}" class="nav-link">
         <i class="fe fe-activity"></i> Monitor
     </a>
 </li>

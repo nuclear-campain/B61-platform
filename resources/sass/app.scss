@@ -13,6 +13,36 @@
 @import "~bootstrap/scss/functions";
 @import '~bootstrap/scss/bootstrap';
 
+// Status badges partials 
+/// Pending badge
+.badge-Pending {
+  color: $white;
+  background-color: $secondary;
+}
+
+.fe-Pending:before {
+  content: "\e936";
+}
+
+/// Accepted badge
+.badge-Accepted {
+  color: $white;
+  background-color: $success;
+}
+
+.fe-Accepted:before {
+  content: "\e92b";
+}
+
+/// Rejected badge
+.badge-Rejected {
+  color: $white;
+  background-color: $danger;
+}
+
+.fe-Rejected:before {
+  content: "\ea01";
+}
 
 // Navbar partial
 .navbar-laravel {

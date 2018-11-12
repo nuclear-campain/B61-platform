@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Repositories\CityRepository;
+use App\Interfaces\CityInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * 
  * @package App\Models
  */
-class City extends Model
+class City extends CityRepository implements CityInterface
 {
     /**
      * The attributes that are mass assignable.

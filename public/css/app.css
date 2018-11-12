@@ -11637,6 +11637,33 @@ a.text-dark:focus {
   }
 }
 
+.badge-Pending {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.fe-Pending:before {
+  content: "\E936";
+}
+
+.badge-Accepted {
+  color: #fff;
+  background-color: #38c172;
+}
+
+.fe-Accepted:before {
+  content: "\E92B";
+}
+
+.badge-Rejected {
+  color: #fff;
+  background-color: #e3342f;
+}
+
+.fe-Rejected:before {
+  content: "\EA01";
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

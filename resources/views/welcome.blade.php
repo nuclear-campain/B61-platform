@@ -53,7 +53,7 @@
                         </span>
 
                         <div>
-                            <h5 class="m-0">0 <small>Cities</small></h5>
+                            <h5 class="m-0">{{ $countAccepted }} <small>Cities</small></h5>
                             <small class="text-muted">Accepted the charter declaration</small>
                         </div>
                     </div>

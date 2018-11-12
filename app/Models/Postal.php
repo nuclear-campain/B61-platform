@@ -17,7 +17,7 @@ class Postal extends Model
      *
      * @var array
      */
-    protected $fillable = ['code'];
+    protected $fillable = ['code', 'charter_status'];
 
     /**
      * Data relations for the cities that are connection to the postal code. 

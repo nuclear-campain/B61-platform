@@ -13,6 +13,9 @@
 
 Route::get('/home', 'HomeController@dashboard')->name('home');
 
+// Monitor routes 
+Route::get('/monitor', 'Monitor\DashboardController@dashboard')->name('monitor.admin.dashboard');
+
 // User Dashboard routes
 Route::get('/users', 'Account\UsersController@index')->name('users.web.dashboard');
 Route::get('/users/create', 'Account\UsersController@create')->name('users.create');
