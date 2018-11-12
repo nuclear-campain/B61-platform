@@ -56,7 +56,7 @@ class DashboardController extends Controller
             $cities = $cities->getByStatus($request->filter);
         }
 
-        // If no filter valid filter is given go further with the collection of all the 
+        // If no valid filter is given go further with the collection of all the 
         // Cities in the application database storage. 
 
         return view('monitor.backend.dashboard', ['cities' => $cities->simplePaginate()]);

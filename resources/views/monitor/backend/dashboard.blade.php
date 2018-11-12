@@ -13,6 +13,7 @@
                     </button>
 
                     <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('monitor.admin.dashboard') }}">All cities</a>
                         <a class="dropdown-item" href="{{ route('monitor.admin.dashboard', ['filter' => 'Accepted']) }}">Accepted cities</a>
                         <a class="dropdown-item" href="{{ route('monitor.admin.dashboard', ['filter' => 'Pending'])  }}">Pending cities</a>
                         <a class="dropdown-item" href="{{ route('monitor.admin.dashboard', ['filter' => 'Rejected']) }}">Rejected cities</a>
