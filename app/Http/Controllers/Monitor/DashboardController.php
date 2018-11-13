@@ -44,7 +44,6 @@ class DashboardController extends Controller
      * Function for displaying the frontend dashboard from the monitor. 
      * 
      * @todo Implement message for an empty table. ( @forelse statement in blade. )
-     * @todo Implement and docblock the ->getByStatus() class and repository.
      * @todo Implement the search method for the overview page. (search baased on name and postal.)
      * 
      * @param  City $cities Storage entity model from all the cities in the storage. 

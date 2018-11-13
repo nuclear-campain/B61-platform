@@ -17,6 +17,7 @@ Auth::routes();
 
 // City monitor routes
 Route::get('/monitor', 'Monitor\DashboardController@index')->name('monitor.web.dashboard');
+Route::get('/monitor/{city}', 'Monitor\SharedController@show')->name('monitor.city');
 
 // Contact routes
 Route::view('/contact', 'contact.index')->name('contact');

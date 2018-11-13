@@ -55,6 +55,14 @@
   @include button-outline-variant(#3b5998);
 }
 
+.btn-facebook {
+  @include button-variant(#3b5998, #3b5998);
+}
+
+.btn-twitter {
+  @include button-variant(#1da1f2, #1da1f2);
+}
+
 .btn-outline-twitter {
   @include button-outline-variant(#1da1f2);
 }

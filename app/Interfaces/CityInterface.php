@@ -18,4 +18,12 @@ interface CityInterface
      * @return bool
      */
     public function hasStatus(string $status): bool;
+
+     /**
+     * Method for getting the cities defined by status. 
+     * 
+     * @param  string $status The given status from the cities you want to display.
+     * @return Builder
+     */
+    public function getByStatus(string $status): Builder;
 }
