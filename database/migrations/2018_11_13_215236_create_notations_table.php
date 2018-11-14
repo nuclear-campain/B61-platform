@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateNotationTable
+ */
 class CreateNotationsTable extends Migration
 {
     /**
@@ -11,15 +14,19 @@ class CreateNotationsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('notations', function (Blueprint $table) {
+        Schema::create('notations', function (Blueprint $table): void {
             $table->increments('id');
-            $table->unsignedInteger('city_id')->nullable();
+            $table->unsignedInteger('city_id');
+            $table->unsignedInteger('author_id');
+            $table->string('title');
+            $table->text('description');
             $table->timestamps();
 
-            // Foreign keys 
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
+            // Foreign keys
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }
 
@@ -28,7 +35,7 @@ class CreateNotationsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('notations');
     }
