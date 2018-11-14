@@ -59,7 +59,7 @@
 
                                     <td>{{--Table functions --}}
                                         <span class="float-right mr-1">
-                                            <a class="text-secondary no-underline" href="{{ route('monitor.city', $city) }}">
+                                            <a class="text-secondary no-underline" href="{{ route('monitor.admin.show', $city) }}">
                                                 <i class="fe fe-eye mr-1"></i>
                                             </a>
 

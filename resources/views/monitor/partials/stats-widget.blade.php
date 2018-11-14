@@ -1,4 +1,4 @@
-<div class="card tw-shadow p-2">
+<div class="card tw-shadow mb-4 p-2">
     <div class="d-flex align-items-center">
         <span class="stamp stamp-md shadow-sm bg-success mr-3">
             <i class="fe fe-check-circle"></i>

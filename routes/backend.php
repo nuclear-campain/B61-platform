@@ -14,7 +14,11 @@
 Route::get('/home', 'HomeController@dashboard')->name('home');
 
 // Monitor routes 
-Route::get('/monitor', 'Monitor\DashboardController@dashboard')->name('monitor.admin.dashboard');
+Route::get('/monitor', 'Monitor\BackendController@index')->name('monitor.admin.dashboard');
+Route::get('/monitor/{city}', 'Monitor\BackendController@show')->name('monitor.admin.show');
+
+// Notation routes
+Route::get('/{city}/notations', 'Monitor\NotationController@index')->name('monitor.notations');
 
 // User Dashboard routes
 Route::get('/users', 'Account\UsersController@index')->name('users.web.dashboard');

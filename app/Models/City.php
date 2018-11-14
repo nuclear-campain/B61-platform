@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Repositories\CityRepository;
 use App\Interfaces\CityInterface;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
 
 /**
  * Class City 
@@ -28,6 +28,16 @@ class City extends CityRepository implements CityInterface
     public function province(): BelongsTo
     {
         return $this->belongsTo(Province::class)->withDefault(['name' => 'None']);
+    }
+
+    /**
+     * Data relation for getting the notations from the given city. 
+     * 
+     * @return HasMany
+     */
+    public function notations(): HasMany
+    {
+        return $this->hasMany(Notation::class);
     }
 
     /**
