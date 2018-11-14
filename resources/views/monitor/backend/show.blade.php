@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include ('monitor.partials.city-header', ['category' => 'information']) {{-- Page header --}}
+    @include ('monitor.partials.city-header') {{-- Page header --}}
 
     <div class="container py-3">
         <div class="row">

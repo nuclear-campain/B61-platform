@@ -48,7 +48,7 @@ class NotationController extends Controller
      */
     public function create(City $city): View
     {
-        return view('monitor.notations.create');
+        return view('monitor.notations.create', compact('city'));
     }
 
     /**
