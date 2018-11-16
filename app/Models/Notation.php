@@ -27,6 +27,16 @@ class Notation extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault(['name' => 'Unknown user']);
+    }
+
+    /**
+     * Data relation for the city that is connected to the notation. 
+     * 
+     * @return BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

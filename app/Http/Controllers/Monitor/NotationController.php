@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Monitor;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\{Request, RedirectResponse};
 use App\Http\Controllers\Controller;
-use App\Models\City;
+use App\Models\{City, Notation};
 use Illuminate\Contracts\View\View;
+use App\Http\Requests\Monitor\NotationValidator;
 
 /**
  * Class NotationController
@@ -29,6 +29,7 @@ class NotationController extends Controller
     /**
      * Function for displaying all the notations from a city in the application backend.
      *
+     * @param  City $city The resource entity from the storage.
      * @return View
      */
     public function index(City $city): View
@@ -40,9 +41,8 @@ class NotationController extends Controller
     /**
      * Function for displaying the notation create view.
      *
-     * @todo Build up the view.
-     * @todo Implement the route
-     *
+     * @todo Implement status indicator
+     * 
      * @param  City $city The resource entity from the storage.
      * @return View
      */
@@ -54,24 +54,46 @@ class NotationController extends Controller
     /**
      * Method for storing a city notation in the application.
      *
-     * @todo Implement the route
-     * @todo Implement the form request class.
-     * @todo Implement the controller logic.
-     *
+     * @see \App\Observers\NotationObserver::created()
+     * 
      * @param  NotationValidator $input The form request class that handles the validation.
      * @param  City              $city  The resource entity from the storage.
      * @return RedirectResponse
      */
     public function store(NotationValidator $input, City $city): RedirectResponse
     {
-        $input->merge(['author_id' => $this->auth->user()->id]); // TODO: Check if we can use a observer for this action.
+        $notation = new Notation($input->all());
 
-        dump($city->notations()->save($input->all()));
-
-        if ($city->notations()->save($input->all())) { // Notation has been saved.
+        if ($city->notations()->save($notation)) { // Notation authoir has been saved in the created observer
             $this->flashMessage->success("The notation for {$city->name} has been saved.");
         }
 
         return redirect()->route('monitor.notations', $city);
+    }
+
+    /**
+     * Function to display the view for editing a notation. 
+     * 
+     * @param  
+     * @return RedirectResponse
+     */
+    public function edit(Notation $notation): View
+    {
+        return view('monitor.notations.edit', compact('notation'));
+    }
+
+    /**
+     * Method for deleting a notation in the application. 
+     * 
+     * @param  Notation $notation The resource entity from the notation in the storage.
+     * @return RedirectResponse
+     */
+    public function destroy(Notation $notation): RedirectResponse
+    {
+        if ($notation->delete()) {
+            $this->flashMessage->info("The notation for {$notation->city->name} has been deleted.");
+        } 
+
+        return redirect()->route('monitor.notations', $notation->city);
     }
 }

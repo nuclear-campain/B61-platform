@@ -9,7 +9,7 @@
 
             <div class="col-md-9"> {{-- Content field --}}
                 <div class="card card-body">
-                    <h6 class="border-bottom border-gray pb-2 mb-0">
+                    <h6 class="border-bottom border-gray pb-2 mb-3">
                         Notations for {{ $city->name }}
 
                         <a href="{{ route('monitor.notations.create', $city) }}" class="small no-underline float-right">
@@ -17,7 +17,39 @@
                         </a>
                     </h6>
 
-                    {{-- @todo Implement table --}}
+                    @include ('flash::message') {{-- Flash session view partial. --}}
+
+                    <table class="table table-sm mb-2">
+                        <tbody>
+                            @forelse ($notations as $notation)
+                                <tr>
+                                    <td @if ($loop->first) class="border-top-0" @endif><strong>{{ $notation->author->name }}</strong>
+                                    <td @if ($loop->first) class="border-top-0" @endif>{{ $notation->title }}</td>
+                                    <td @if ($loop->first) class="border-top-0" @endif>{{ $notation->created_at->diffForHumans() }}</td>
+
+                                    <td @if ($loop->first) class="border-top-0" @endif> {{-- Options --}}
+                                        <span class="float-right">
+                                            <a href="" class="text-secondary no-underline mr-1">
+                                                <i class="fe fe-edit-3"></i>
+                                            </a>
+
+                                            <a href="{{ route('monitor.notations.delete', $notation) }}" class="text-danger no-underline">
+                                                <i class="fe fe-x-circle"></i>
+                                            </a>
+                                        </span>
+                                    </td> {{-- /// END options --}}
+                                </tr>   
+                            @empty {{-- No notations in the application --}}
+                                <tr>
+                                    <td colspan="4" class="border-top-0">
+                                        <span class="tw-text-sm text-muted"><i>There are no notations found for {{ $city->name}} in the application.</i></span>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+
+                    {{ $notations->links('monitor.partials.pagination') }}
                 </div>
             </div> {{-- /// Content field --}}
         </div>

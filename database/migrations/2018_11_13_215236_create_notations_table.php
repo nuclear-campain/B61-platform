@@ -19,7 +19,7 @@ class CreateNotationsTable extends Migration
         Schema::create('notations', function (Blueprint $table): void {
             $table->increments('id');
             $table->unsignedInteger('city_id');
-            $table->unsignedInteger('author_id');
+            $table->unsignedInteger('author_id')->nullable();
             $table->string('title');
             $table->text('description');
             $table->timestamps();
