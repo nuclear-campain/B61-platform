@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use ActivismBe\Seeders\DatabaseSeeder as BaseSeeder;
+use ActivismBe\Seeders\AclTableSeeder;
 
 /**
  * Class DatabaseSeeder
  */
-class DatabaseSeeder extends Seeder
+class DatabaseSeeder extends BaseSeeder
 {
     /**
      * Seed the application's database.
@@ -14,24 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     { 
-        if ($this->resetDatabase()) {
-            $this->command->call('migrate:refresh');
-            $this->command->warn('Data cleared, starting from blank database.');
-        }
+        parent::run(); // Initialize the base seeder. 
 
         // Run other seeds in the application. 
+        $this->call(AclTableSeeder::class);
         $this->call(CityScaffoldingSeeder::class);
-        $this->call(AclUserScaffoldingSeeder::class);
-    }
-
-    /**
-     * Function for determining if we need to reset the database storage or not. 
-     * 
-     * @return bool
-     */
-    protected function resetDatabase(): bool 
-    {
-        return ! app()->environment(['production', 'prod']) 
-            && $this->command->confirm('Do you wish to refresh migrations before seeding, it will clear all old data?');
     }
 }
