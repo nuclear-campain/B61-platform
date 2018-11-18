@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // View composers
-        view()->composer(['monitor.*', 'welcome'], MonitorComposer::class);
+        view()->composer(['monitor.*', 'welcome', 'home'], MonitorComposer::class);
 
         // Model observers 
         Notation::observe(NotationObserver::class);

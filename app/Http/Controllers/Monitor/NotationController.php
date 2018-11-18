@@ -64,7 +64,7 @@ class NotationController extends Controller
     {
         $notation = new Notation($input->all());
 
-        if ($city->notations()->save($notation)) { // Notation authoir has been saved in the created observer
+        if ($city->notations()->save($notation)) {
             $this->flashMessage->success("The notation for {$city->name} has been saved.");
         }
 
