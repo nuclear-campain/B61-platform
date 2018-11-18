@@ -74,7 +74,9 @@ class NotationController extends Controller
     /**
      * Function to display the view for editing a notation. 
      * 
-     * @param  
+     * @todo Register route 
+     * 
+     * @param  Notation $notation The resource entity from the notation. 
      * @return RedirectResponse
      */
     public function edit(Notation $notation): View
@@ -94,6 +96,6 @@ class NotationController extends Controller
             $this->flashMessage->info("The notation for {$notation->city->name} has been deleted.");
         } 
 
-        return redirect()->route('monitor.notations', $notation->city);
+        return redirect()->back(); // Redirect to the previous page.
     }
 }

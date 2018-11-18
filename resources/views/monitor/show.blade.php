@@ -9,7 +9,7 @@
             <hr class="my-3">
 
             <p class="lead">
-                <a href="" class="btn btn-outline-primary">
+                <a href="{{ route('monitor.web.dashboard') }}" class="btn btn-outline-primary">
                     <i class="fe fe-list mr-1"></i> Back to overview
                 </a>
             </p>
@@ -18,6 +18,8 @@
     </div>
 
     <div class="container">
+        @include('flash::message') {{-- Flash session view partial --}}
+
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4 shadow-sm">
@@ -25,9 +27,17 @@
                         {{ $city->postal->code}}, {{ $city->name}} 
                         
                         @if (Auth::check())
-                            <a href="" class="float-right no-underline text-success">
-                                <strong><i class="fe fe-eye"></i> Follow</strong>
-                            </a>
+                            <span class="float-right font-weight-light">
+                                @if (Auth::user()->hasRole('admin')) 
+                                    <a href="{{ route('monitor.admin.show', $city) }}" class="no-underline text-secondary mr-2">
+                                        <i class="fe fe-settings"></i> Edit
+                                    </a> 
+                                @endif
+
+                                <a href="" class="no-underline text-success">
+                                    <i class="fe fe-eye"></i> Follow
+                                </a>
+                            </span>
                         @endif
                     </div>
 
@@ -63,20 +73,44 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="municipalities-tab" data-toggle="tab" href="#municipalities" role="tab" aria-controls="notations" aria-selected="true"><i class="fe fe-home mr-1"></i> Municipalities </a>
+                                <a class="nav-link" id="municipalities-tab" data-toggle="tab" href="#municipalities" role="tab" aria-controls="municipalities" aria-selected="true"><i class="fe fe-home mr-1"></i> Municipalities </a>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body pl-4 pr-4 pb-2 pt-2">
-                        <div class="tab-content" id="myTabContent">
+                        <div class="tab-content">
                             <div class="tab-pane fade show active" id="notations" role="tabpanel" aria-labelledby="notations-tab">
-                                @forelse
+                                <table class="table table-sm mb-0">
+                                    @forelse ($notations as $notation) {{-- notations loop --}}
+                                        <tr>
+                                            <td class="@if ($loop->first) border-top-0 @endif">
+                                                <i class="fe fe-user mr-1"></i> {{ $notation->author->name }}
+                                            </td>
+
+                                            <td class="@if ($loop->first) border-top-0 @endif">{{ ucfirst($notation->title) }}</td>
+                                            <td class="@if ($loop->first) border-top-0 @endif">{{ $notation->created_at->diffForHumans() }}</td>
+
+                                            @if (Auth::user()->hasRole('admin'))
+                                                <td @if ($loop->first) class="border-top-0" @endif>
+                                                    <a href="{{ route('monitor.notations.delete', $notation) }}" class="float-right text-danger no-underline mr-1">
+                                                        <i class="fe fe-x-circle mr-1"></i> Delete
+                                                    </a>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @empty {{-- There are no notations for the city. --}}
+                                        <td colspan="5" class="border-top-0 text-secondary">
+                                            <strong><i class="fe fe-info mr-1"></i></strong> {{ $city->name }} has no notations at this time.
+                                            - <a href="" class="no-underline">Create one </a>
+                                        </td>
+                                    @endforelse {{-- /// End notations loop --}}
+                                </table>
                             </div>
 
                             <div class="tab-pane fade show" id="municipalities" role="tabpanel" aria-labelledby="municipalities-tab">
                                 <table class="table table-sm mb-0">
                                     <tbody>
-                                        @forelse ($municipalities as$municipality)
+                                        @forelse ($municipalities as $municipality)
                                             <tr>
                                                 <td @if ($loop->first) class="border-top-0" @endif>
                                                     <span class="badge badge-{{ $municipality->postal->charter_status }}">
