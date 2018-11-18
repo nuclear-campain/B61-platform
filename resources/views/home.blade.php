@@ -65,17 +65,17 @@
     </div> {{-- /// END sat widgets --}}
 
     <div class="row">
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 mb-4"> {{-- Recent users --}}
             <div class="card shadow-sm card-body">
                 <h6 class="border-bottom border-gray pb-1 mb-2">
-                    Latest registered today 
-                    
+                    Latest registered users 
+
                     <a href="" class="float-right small no-underline">
                         <i class="fe fe-users"></i> View all
                     </a>
                 </h6>
             </div>
         </div>
-    </div>
+    </div> {{-- /// END recent users --}}
 </div>
 @endsection
