@@ -14,7 +14,14 @@
 Route::get('/home', 'HomeController@dashboard')->name('home');
 
 // Monitor routes 
-Route::get('/monitor', 'Monitor\DashboardController@dashboard')->name('monitor.admin.dashboard');
+Route::get('/monitor', 'Monitor\BackendController@index')->name('monitor.admin.dashboard');
+Route::get('/monitor/{city}', 'Monitor\BackendController@show')->name('monitor.admin.show');
+
+// Notation routes
+Route::get('/{city}/notations', 'Monitor\NotationController@index')->name('monitor.notations');
+Route::get('/{city}/notations/create', 'Monitor\NotationController@create')->name('monitor.notations.create');
+Route::post('/{city}/notations/create', 'Monitor\NotationController@store')->name('monitor.notations.store');
+Route::get('/notations/delete/{notation}', 'Monitor\NotationController@destroy')->name('monitor.notations.delete');
 
 // User Dashboard routes
 Route::get('/users', 'Account\UsersController@index')->name('users.web.dashboard');

@@ -58,7 +58,11 @@ class CommentController extends Controller
         return view('comments.edit', compact('comment'));
     }
 
-    public function update(): RedirectResponse
+    /**
+     * 
+     * @return RedirectResponse
+     */
+    public function update(Comment $comment): RedirectResponse
     {
         // TODO: Build up the function
     }

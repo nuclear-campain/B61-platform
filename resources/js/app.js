@@ -34,6 +34,10 @@ const app = new Vue({
 require('../../node_modules/summernote/dist/summernote-bs4');
 
 $(document).ready(function() {
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350, function() {
+        $(this).alert('close');
+    });
+
     $('#contentArea').summernote({
         placeholder: 'Meh',
         shortcuts: false,

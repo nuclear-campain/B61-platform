@@ -8,49 +8,33 @@ use Illuminate\View\View;
 use App\Models\City;
 
 /**
- * DashboardController 
+ * BackendController 
  * 
  * @package App\Http\Controllers\Monitor
  */
-class DashboardController extends Controller
+class BackendController extends Controller
 {
     /**
-     * DashboardController constructor
+     * BackendController constructor
      * 
      * @return void
      */
-    public function _construct() 
+    public function __construct() 
     {
         parent::__construct(); // Initiate the parent constructor in this controller. 
-
-        $this->middleware(['auth']);
-        $this->middleware(['auth', 'role:admin'])->only(['dashboard']);
+        $this->middleware(['auth', 'role:admin']);
     }
 
     /**
-     * Function for displaying the frontend dashboard from the monitor. 
-     * 
-     * @todo Build up the application view.
-     * 
-     * @param  City $cities Storage entity model from all the cities in the storage. 
-     * @return View
-     */
-    public function index(City $cities): View
-    {
-        return view('monitor.frontend.dashboard', ['cities' => $cities->with(['postal'])->simplePaginate()]);
-    }
-
-    /**
-     * Function for displaying the frontend dashboard from the monitor. 
+     * Function for displaying the backend dashboard from the monitor. 
      * 
      * @todo Implement message for an empty table. ( @forelse statement in blade. )
-     * @todo Implement and docblock the ->getByStatus() class and repository.
      * @todo Implement the search method for the overview page. (search baased on name and postal.)
      * 
      * @param  City $cities Storage entity model from all the cities in the storage. 
      * @return View
      */
-    public function dashboard(Request $request, City $cities): View 
+    public function index(Request $request, City $cities): View 
     {
         if (in_array($request->filter, ['Accepted', 'Pending', 'Rejected'])) {
             $cities = $cities->getByStatus($request->filter);
@@ -60,5 +44,16 @@ class DashboardController extends Controller
         // Cities in the application database storage. 
 
         return view('monitor.backend.dashboard', ['cities' => $cities->simplePaginate()]);
+    }
+
+    /**
+     * Function for displaying the city information in the backend. 
+     * 
+     * @param  City $city The resource entity from the given city.
+     * @return View
+     */
+    public function show(City $city): View 
+    {
+        return view('monitor.backend.show', compact('city'));
     }
 }
