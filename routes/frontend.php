@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@welcome')->name('welcome');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // City monitor routes
 Route::get('/monitor', 'Monitor\FrontendController@index')->name('monitor.web.dashboard');

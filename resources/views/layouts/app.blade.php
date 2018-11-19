@@ -50,17 +50,15 @@
                                 @endif
                             </li>
                         @else {{-- user is authenticated --}}
-                            @if (Auth::user()->hasRole('admin'))
-                                <li class="nav-item">
-                                    <a href="{{ route('notifications.index') }}" class="nav-link">
-                                        <i class="fe fe-bell"></i>
+                            <li class="nav-item">
+                                <a href="{{ route('notifications.index') }}" class="nav-link">
+                                    <i class="fe fe-bell"></i>
 
-                                        <span style="margin-top: -.25rem;" class="badge align-middle badge-pill badge-danger">
-                                            {{ Auth::user()->unreadNotifications->count() }}
-                                        </span>
-                                    </a>
-                                </li>
-                            @endif
+                                    <span style="margin-top: -.25rem;" class="badge align-middle badge-pill badge-danger">
+                                        {{ Auth::user()->unreadNotifications->count() }}
+                                    </span>
+                                </a>
+                            </li>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

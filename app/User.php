@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Cache;
 use App\Repositories\UserRepository;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 /**
  * Class User
  *
  * @package App
  */
-class User extends UserRepository implements HasMedia
+class User extends UserRepository implements HasMedia, MustVerifyEmail
 {
     use Notifiable, HasRoles, SoftDeletes, HasMediaTrait;
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Models\Article;
+use App\User;
 
 /**
  * Class HomeController 
@@ -41,6 +42,8 @@ class HomeController extends Controller
      */
     public function dashboard(): View
     {
-        return view('home');
+        $users = User::orderBy('created_at', 'desc')->take(6)->get();
+
+        return view('home', compact('users'));
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Composers\MonitorComposer;
+use App\Composers\{MonitorComposer, DashboardComposer};
 use App\Models\Notation;
 use App\Observers\NotationObserver;
 
@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // View composers
         view()->composer(['monitor.*', 'welcome', 'home'], MonitorComposer::class);
+        view()->composer(['home'], DashboardComposer::class);
 
         // Model observers 
         Notation::observe(NotationObserver::class);
