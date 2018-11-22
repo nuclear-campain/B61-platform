@@ -23,12 +23,30 @@
                         <tbody>
                             @forelse ($notations as $notation)
                                 <tr>
-                                    <td @if ($loop->first) class="border-top-0" @endif><strong>{{ $notation->author->name }}</strong>
+                                    <td @if ($loop->first) class="border-top-0" @endif> {{-- Status indicator --}}
+                                        @if ($notation->status) {{-- The notation is published --}}
+                                            <span class="badge badge-success">Published</span>
+                                        @else {{-- Is not published --}}
+                                            <span class="badge badge-danger">Draft version</span>
+                                        @endif
+
+                                    </td> {{-- /// END status indicator --}}
+
                                     <td @if ($loop->first) class="border-top-0" @endif>{{ $notation->title }}</td>
                                     <td @if ($loop->first) class="border-top-0" @endif>{{ $notation->created_at->diffForHumans() }}</td>
 
                                     <td @if ($loop->first) class="border-top-0" @endif> {{-- Options --}}
                                         <span class="float-right">
+                                            @if ($notation->status) {{-- The notation is published --}}
+                                                <a href="" class="no-underline text-danger mr-1">
+                                                    <i class="fe fe-square"></i>
+                                                </a>
+                                            @else {{-- Is not published --}}
+                                                <a href="" class="no-underline text-success mr-1">
+                                                    <i class="fe fe-check-square"></i>
+                                                </a>
+                                            @endif
+                                            
                                             <a href="" class="text-secondary no-underline mr-1">
                                                 <i class="fe fe-edit-3"></i>
                                             </a>

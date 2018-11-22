@@ -93,7 +93,7 @@
                                             @if (Auth::user()->hasRole('admin'))
                                                 <td @if ($loop->first) class="border-top-0" @endif>
                                                     <a href="{{ route('monitor.notations.delete', $notation) }}" class="float-right text-danger no-underline mr-1">
-                                                        <i class="fe fe-x-circle mr-1"></i> Delete
+                                                        <i class="fe fe-x-circle mr-1"></i>
                                                     </a>
                                                 </td>
                                             @endif

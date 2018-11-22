@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\CityInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class CityRepository
@@ -34,5 +35,15 @@ class CityRepository extends Model implements CityInterface
         return $this->whereHas('postal', function ($query) use ($status) {
             $query->whereCharterStatus($status); // Results in WHERE charter_status = <status>;
         });
+    }
+
+    /**
+     * Get all the public notations for the given city. 
+     * 
+     * @return HasMany
+     */
+    public function getNotations(): HasMany
+    {
+        return $this->notations()->whereStatus(true);
     }
 }

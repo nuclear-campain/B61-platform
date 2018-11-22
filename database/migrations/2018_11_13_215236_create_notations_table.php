@@ -20,6 +20,7 @@ class CreateNotationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('city_id');
             $table->unsignedInteger('author_id')->nullable();
+            $table->boolean('status');
             $table->string('title');
             $table->text('description');
             $table->timestamps();

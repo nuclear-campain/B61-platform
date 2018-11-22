@@ -18,7 +18,7 @@ class Notation extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'status'];
 
     /**
      * Get the author user information from the database.

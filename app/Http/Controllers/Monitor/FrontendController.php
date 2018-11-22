@@ -37,7 +37,7 @@ class FrontendController extends Controller
     public function show(City $city): View
     {
         $municipalities = City::wherePostalId($city->postal_id)->where('name', '!=', $city->name)->get();
-        $notations      = $city->notations()->simplePaginate();
+        $notations      = $city->getNotations()->simplePaginate();
 
         return view('monitor.show', compact('city', 'municipalities', 'notations'));
     }
