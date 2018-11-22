@@ -27,7 +27,7 @@ class FrontendController extends Controller
             'notations' => $cities->notations()->simplePaginate(),
         ]);
     }
-
+ 
      /**
      * Function for displaying the city information in the application. 
      * 

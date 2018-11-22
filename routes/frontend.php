@@ -15,6 +15,12 @@ Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes(['verify' => true]);
 
+// City monitor following routes. 
+
+Route::get('/monitor/following', 'Monitor\FollowController@index')->name('monitor.following');
+Route::get('/monitor/follow/{city}', 'Monitor\FollowController@follow')->name('city.follow'); 
+Route::get('/monitor/unfollow/{city}', 'Monitor\FollowController@unfollow')->name('city.unfollow');
+
 // City monitor routes
 Route::get('/monitor', 'Monitor\FrontendController@index')->name('monitor.web.dashboard');
 Route::get('/monitor/{city}', 'Monitor\FrontendController@show')->name('monitor.web.city');
