@@ -48,7 +48,8 @@ class NotationController extends Controller
      */
     public function create(City $city): View
     {
-        return view('monitor.notations.create', compact('city'));
+        $statusses = [0 => 'Draft version', 1 => 'Publish notation'];
+        return view('monitor.notations.create', compact('city', 'statusses'));
     }
 
     /**

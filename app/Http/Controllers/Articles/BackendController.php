@@ -81,7 +81,7 @@ class BackendController extends Controller
     public function store(ArticleValidator $input, Article $article): RedirectResponse
     {
         if ($article = $article->create($input->all())) {
-            $article->author()->associate($this->auth->user())->save();
+            $article->author()->associate($this->auth->user())->save(); // TODO: Register in model observer function.
             $this->flashMessage->success('The news article has been stored!');
         }
 

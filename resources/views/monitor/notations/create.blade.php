@@ -20,10 +20,20 @@
                     </h6>
 
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label for="inputTitle">Title <span class="text-danger">*</span></label>
-                            <input type="text"@input('title') placeholder="Notation title" class="form-control @error('title', 'is-invalid')">
+                            <input type="text" @input('title') placeholder="Notation title" class="form-control @error('title', 'is-invalid')">
                             @error('title')
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="inputStatus">Status <span class="text-danger">*</span></label>
+                            
+                            <select @input('status') class="form-control @error('status', 'is-invalid')">
+                                @options($statusses, 'status')
+                            </select>
+
+                            @error('status')
                         </div>
 
                         <div class="form-group col-md-12">
