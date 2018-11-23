@@ -29,14 +29,20 @@
                         @if (Auth::check())
                             <span class="float-right font-weight-light">
                                 @if (Auth::user()->hasRole('admin')) 
-                                    <a href="{{ route('monitor.admin.show', $city) }}" class="no-underline text-secondary mr-2">
+                                    <a href="{{ route('monitor.admin.show', $city) }}" class="text-secondary no-underline mr-2">
                                         <i class="fe fe-settings"></i> Edit
                                     </a> 
                                 @endif
 
-                                <a href="" class="no-underline text-success">
-                                    <i class="fe fe-eye"></i> Follow
-                                </a>
+                                @if (Auth::user()->isFollowing($city))
+                                    <a href="{{ route('city.unfollow', $city) }}" class="no-underline text-danger">
+                                        <i class="fe fe-eye-off"></i> Unfollow
+                                    </a>
+                                @else {{-- The authenticated user is not follwoing the city. --}}
+                                    <a href="{{ route('city.follow', $city) }}" class="no-underline text-success">
+                                        <i class="fe fe-eye"></i> Follow
+                                    </a>
+                                @endif
                             </span>
                         @endif
                     </div>

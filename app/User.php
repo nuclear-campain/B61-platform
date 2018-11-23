@@ -10,6 +10,7 @@ use App\Repositories\UserRepository;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Overtrue\LaravelFollow\Traits\CanFollow;
 
 /**
  * Class User
@@ -18,7 +19,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
  */
 class User extends UserRepository implements HasMedia, MustVerifyEmail
 {
-    use Notifiable, HasRoles, SoftDeletes, HasMediaTrait;
+    use Notifiable, HasRoles, SoftDeletes, HasMediaTrait, CanFollow;
 
     /**
      * The attributes that are mass assignable.

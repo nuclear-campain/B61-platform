@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Repositories\CityRepository;
 use App\Interfaces\CityInterface;
 use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 
 /**
  * Class City 
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
  */
 class City extends CityRepository implements CityInterface
 {
+    use CanBeFollowed;
+    
     /**
      * The attributes that are mass assignable.
      *

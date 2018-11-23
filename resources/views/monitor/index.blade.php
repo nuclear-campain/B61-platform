@@ -67,7 +67,7 @@
             </div>
 
             <div class="col-md-4"> 
-                <div class="card p-2 mb-3 card-body">
+                <div class="card p-2 card-body">
                     <form class="row">
                         <div class="col-12 col-sm pr-sm-1">
                             <input type="text" name="term" placeholder="Search for another city" class="form-control mr-1"></div> <div class="col-12 col-sm-auto pl-sm-0">
@@ -92,7 +92,25 @@
                             </a>
                         </div>
                     </div>
-                </div>         
+                </div>    
+
+                @if (Auth::check() && Auth::user()->followings(\App\Models\City::class)->count() > 0)
+                    <hr class="mt-2 mb-2">
+
+                    <div class="list-group">
+                        @if (Request::is('monitor/following'))
+                            <a href="{{ route('monitor.web.dashboard') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                Back to monitor
+                            </a>
+                        @else {{-- Display back to overview link --}}
+                            <a href="{{ route('monitor.following') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                My followed cities <span class="badge badge-primary badge-pill">{{ Auth::user()->followings(\App\Models\City::class)->count() }}</span>
+                            </a>
+                        @endif
+                    </div>
+                @endif
+
+                <hr class="mt-2 mb-2">     
 
                 @include('monitor.partials.stats-widget')
             </div>
