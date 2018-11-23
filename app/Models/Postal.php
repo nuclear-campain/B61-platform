@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
 
 /**
  * Class Postal 
  * 
  * @package App\Models
  */
-class Postal extends Model
+class Postal extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     /**
      * The attributes that are mass assignable.
      *

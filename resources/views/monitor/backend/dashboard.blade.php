@@ -73,13 +73,13 @@
                                                    <i class="fe fe-circle"></i>
                                                 </a>
 
-                                                <a class="text-success no-underline" href="">
+                                                <a class="text-success no-underline" href="{{ route('charter.accept', $city) }}">
                                                     <i class="fe fe-check-circle"></i>
                                                 </a>
                                             @endif
 
                                             @if ($city->hasStatus('Pending'))
-                                                <a class="text-success no-underline mr-1">
+                                                <a href="{{ route('charter.accept', $city) }}" class="text-success no-underline mr-1">
                                                     <i class="fe fe-check-circle"></i>
                                                 </a>
 

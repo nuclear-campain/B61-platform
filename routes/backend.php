@@ -17,6 +17,10 @@ Route::get('/home', 'HomeController@dashboard')->name('home');
 Route::get('/monitor', 'Monitor\BackendController@index')->name('monitor.admin.dashboard');
 Route::get('/monitor/{city}', 'Monitor\BackendController@show')->name('monitor.admin.show');
 
+// City monitor status routes 
+Route::get('/{city}/accept', 'Monitor\Status\AcceptController@index')->name('charter.accept');
+Route::post('/{city}/accept', 'Monitor\Status\AcceptController@store')->name('charter.accept.store');
+
 // Notation routes
 Route::get('/{city}/notations', 'Monitor\NotationController@index')->name('monitor.notations');
 Route::get('/{city}/notations/create', 'Monitor\NotationController@create')->name('monitor.notations.create');
