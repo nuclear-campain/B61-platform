@@ -2,10 +2,14 @@
 
 namespace App\Repositories;
 
+use RuntimeException;
 use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\CityInterface;
+use Illuminate\Support\Facades\Notifications;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Notifications\CharterNotification;
+use Illuminate\Support\Facades\Notification;
 
 /**
  * Class CityRepository
@@ -35,6 +39,20 @@ class CityRepository extends Model implements CityInterface
         return $this->whereHas('postal', function ($query) use ($status) {
             $query->whereCharterStatus($status); // Results in WHERE charter_status = <status>;
         });
+    }
+
+    /**
+     * Method for sending out notifications to the city followers. 
+     * 
+     * @param  string $status The name from the newly status that is assigned to the city. 
+     * @return void
+     */
+    public function sendCharterNotification(string $status): void 
+    {
+        $notificationInstance = new CharterNotification($status, $this);
+        $when = now()->addMinute();
+
+        Notification::send($this->followers()->get(), ($notificationInstance)->delay($when));
     }
 
     /**

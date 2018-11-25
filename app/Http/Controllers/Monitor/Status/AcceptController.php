@@ -32,11 +32,16 @@ class AcceptController extends Controller
      * Method for register an city as accepted. 
      * 
      * @param  City $city The storage resource entity form the city. 
-     * @return View 
+     * @return View|RedirectResponse 
      */
-    public function index(City $city): View
+    public function index(City $city)
     {
-        return view('monitor.backend.status.accept', compact('city'));
+        if ($city->postal->charter_status !== 'Accepted') {
+            return view('monitor.backend.status.accept', compact('city'));
+        }
+
+        $this->flashMessage->warning($city->name . ' Has already accepted the charter.')->important();
+        return redirect()->back(); // HTTP/2 - 302
     }
 
     /**
@@ -52,9 +57,11 @@ class AcceptController extends Controller
 
         if ($city->postal->charter_status !== 'Accepted' && $city->postal->update(['charter_status' => 'Accepted'])) {
             $city->postal->addMediaFromRequest('charter')->usingFileName('charter-' . $city->postal->code)->toMediaCollection('charters-' . $city->postal->code, 'charters');
+            $city->sendCharterNotification('Accepted');
+
             $this->flashMessage->success("{$city->name} has accepted the charter against nuclear weapons.")->important();
         }
 
-        return redirect()->back(); // HTTP/2 - 302
+        return redirect()->route('monitor.admin.show', $city);
     }
 }

@@ -32,6 +32,39 @@
             <div class="col-md-9"> {{-- Content --}}
                 @if (count($notifications) > 0) {{-- There are notifications found in the application --}}
                     <div class="card card-body">
+                        <h6 class="border-bottom border-gray pb-1 mb-2">
+                            @if ($type === 'all')
+                                Your notifications
+                            @else
+                                Unread notifications
+                            @endif
+                        </h6>
+
+                        @foreach ($notifications as $notification)
+                            <div class="media small text-muted pt-2">
+                                <img src="" alt="32x32" alt="{{ $notification->notifiable->name }}" class="mr-2 shadow-sm rounded" style="width: 32px; height: 32px;">
+                                <div class="card w-100 card-text border-0 mb-0">
+                                    <div class="w-100">
+                                        <strong class="float-left text-gray-dark">{{ $notification->notifiable->name }}</strong> - {{ $notification->created_at->diffForHumans() }}</strong>
+
+                                        @if ($notification->unread()) 
+                                            <div class="float-right">
+                                                <a href="" class="no-underline"><i class="fe fe-check"></i> 
+                                                    Mark as read
+                                                </a>
+                                            </div> 
+                                        @endif
+                                    </div>
+
+                                    {{ $notification->data['message'] }}
+                                </div>
+                            </div>
+
+                            @if (! $loop->last) {{-- This notification is not the latest so we need a breakline --}}
+                                <hr class="mt-2 mb-0">
+                            @endif
+                        @endforeach
+
                         {{ $notifications->links() }} {{-- Paginator view instance --}}
                     </div>
                     @else {{-- There are no notifications found in the application --}}

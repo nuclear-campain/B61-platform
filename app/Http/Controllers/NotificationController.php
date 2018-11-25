@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Notifications\DatabaseNotification;
 
 /**
  * Class NotificationController
@@ -21,6 +22,20 @@ class NotificationController extends Controller
     {
         parent::__construct();
         $this->middleware(['auth']);
+    }
+
+    /**
+     * Function for marking the given notification as read. 
+     * 
+     * @todo Register route
+     * 
+     * @param  DatabaseNotification $notification Resource entity from the notification.
+     * @return RedirectResponse
+     */
+    public function readAsRead(DatabaseNotification $notification): RedirectResponse 
+    {
+        $notification->markAsRead();
+        return redirect()->back();
     }
 
     /**
@@ -51,9 +66,9 @@ class NotificationController extends Controller
      *
      * @return RedirectResponse
      */
-    public function markAsRead(): RedirectResponse
+    public function markAll(): RedirectResponse
     {
-        $this->auth->user()->unreadNotifications()->maskAsRead();
+        $this->auth->user()->unreadNotifications->markAsRead();
         return redirect()->back(); // Return rout route notifications.index
     }
 }
