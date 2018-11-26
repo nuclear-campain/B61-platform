@@ -43,5 +43,6 @@ Route::patch('/profile-settings/info', 'Account\SettingsController@updateInforma
 Route::patch('/profile/settings/security', 'Account\SettingsController@updateSecurity')->name('account.settings.security');
 
 // Notification routes
+Route::get('/notifications/read/{notification}', 'NotificationController@markAsRead')->name('notifications.markAsRead');
 Route::get('/notifications/mark-as-read', 'NotificationController@markAll')->name('notifications.markAll');
 Route::get('/notifications/{type?}', 'NotificationController@index')->name('notifications.index');

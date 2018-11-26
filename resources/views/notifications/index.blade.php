@@ -49,7 +49,7 @@
 
                                         @if ($notification->unread()) 
                                             <div class="float-right">
-                                                <a href="" class="no-underline"><i class="fe fe-check"></i> 
+                                                <a href="{{ route('notifications.markAsRead', $notification) }}" class="no-underline"><i class="fe fe-check"></i> 
                                                     Mark as read
                                                 </a>
                                             </div> 

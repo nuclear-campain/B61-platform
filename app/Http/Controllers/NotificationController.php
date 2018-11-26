@@ -32,7 +32,7 @@ class NotificationController extends Controller
      * @param  DatabaseNotification $notification Resource entity from the notification.
      * @return RedirectResponse
      */
-    public function readAsRead(DatabaseNotification $notification): RedirectResponse 
+    public function markAsRead(DatabaseNotification $notification): RedirectResponse 
     {
         $notification->markAsRead();
         return redirect()->back();
