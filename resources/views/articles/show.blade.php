@@ -39,7 +39,7 @@
             <div class="col-md-4">
                 <div class="card card-body mb-3 p-3">
                     <div class="media text-muted">
-                        <img class="mr-2 rounded shadow-sm" style="width: 32px; height: 32px;" src="{{ $article->author->getFirstMediaUrl('user-'. $article->author->id, 'avatar') }}">
+                        <img class="mr-2 rounded shadow-sm" style="width: 32px; height: 32px;" src="{{ avatar($article->author) }}">
                         <div class="media-body mb-0 small lh-125">
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <strong class="text-gray-dark">{{ $article->author->name }}</strong>
@@ -63,7 +63,7 @@
 
                     @forelse ($comments as $comment) {{-- Loop through the comments --}}
                         <div class="media small text-muted pt-2">
-		                    <img src="" alt="32x32"  class="mr-2 shadow-sm rounded" style="width: 32px; height: 32px;">
+		                    <img src="{{ avatar($comment->commentator) }}" alt="32x32"  class="mr-2 shadow-sm rounded" style="width: 32px; height: 32px;">
 		                    <div class="card card-text border-0 mb-0">
                                 <div class="d-flex w-100">
                                     <div class="float-left">
