@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Models\City;
+use App\Models\Province;
 
 /**
  * BackendController 
@@ -54,6 +55,7 @@ class BackendController extends Controller
      */
     public function show(City $city): View 
     {
-        return view('monitor.backend.show', compact('city'));
+        $provinces = Province::pluck('name', 'id')->toArray();
+        return view('monitor.backend.show', compact('city', 'provinces'));
     }
 }
