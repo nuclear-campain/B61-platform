@@ -21,7 +21,5 @@ class NotationObserver
     {
         $user = auth()->user();
         $notation->author()->associate($user)->save();
-
-        dump($notation->city);
     }
 }
