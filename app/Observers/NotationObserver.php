@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Notation;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\Monitor\NotationNotification;
 
 /**
  * Class NotationObserver 
@@ -21,5 +23,12 @@ class NotationObserver
     {
         $user = auth()->user();
         $notation->author()->associate($user)->save();
+
+        if ($notation->status) { // The status = public. So send out notifications. 
+            $when = now()->addMinute();
+            $city = $notation->city;
+
+            Notification::send($city->followers()->where('id', '!=', auth()->user()->id)->get(), new NotationNotification($notation));
+        }
     }
 }
