@@ -21,6 +21,9 @@ Route::get('/monitor/following', 'Monitor\FollowController@index')->name('monito
 Route::get('/monitor/follow/{city}', 'Monitor\FollowController@follow')->name('city.follow'); 
 Route::get('/monitor/unfollow/{city}', 'Monitor\FollowController@unfollow')->name('city.unfollow');
 
+// Comment routes
+Route::get('comments/report/{comment}', 'Articles\Comments\ReportController@create')->name('comment.report');
+
 // City monitor routes
 Route::get('/monitor', 'Monitor\FrontendController@index')->name('monitor.web.dashboard');
 Route::get('/monitor/{city}', 'Monitor\FrontendController@show')->name('monitor.web.city');

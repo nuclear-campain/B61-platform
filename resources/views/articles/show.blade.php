@@ -80,7 +80,9 @@
                                         @if (Auth::user()->can('delete-comment', $comment))
                                             <a href="{{ route('comment.delete', $comment) }}" class="small no-underline text-danger"><i class="fe fe-x-circle"></i> Delete comment</a>
                                         @else 
-                                            <a href="" class="small no-underline text-danger"><i class="fe fe-alert-octagon"></i> Report comment</a>
+                                            <a href="{{ route('comment.report', $comment) }}" class="small no-underline text-danger">
+                                                <i class="fe fe-alert-octagon"></i> Report comment
+                                            </a>
                                         @endcan
                                     </div>
                                 @endif
