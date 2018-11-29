@@ -96,7 +96,7 @@
                                             <td class="@if ($loop->first) border-top-0 @endif">{{ ucfirst($notation->title) }}</td>
                                             <td class="@if ($loop->first) border-top-0 @endif">{{ $notation->created_at->diffForHumans() }}</td>
 
-                                            @if (Auth::user()->hasRole('admin'))
+                                            @if (Auth::check() && Auth::user()->hasRole('admin'))
                                                 <td @if ($loop->first) class="border-top-0" @endif>
                                                     <a href="{{ route('monitor.notations.delete', $notation) }}" class="float-right text-danger no-underline mr-1">
                                                         <i class="fe fe-x-circle mr-1"></i>
