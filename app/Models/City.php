@@ -21,7 +21,7 @@ class City extends CityRepository implements CityInterface
      *
      * @var array
      */ 
-    protected $fillable = ['name', 'lat', 'lng'];
+    protected $fillable = ['name', 'province_id', 'lat', 'lng'];
 
     /**
      * Data relation for setting/getting the province from the city. 

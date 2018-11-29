@@ -16,6 +16,7 @@ Route::get('/home', 'HomeController@dashboard')->name('home');
 // Monitor routes 
 Route::get('/monitor', 'Monitor\BackendController@index')->name('monitor.admin.dashboard');
 Route::get('/monitor/{city}', 'Monitor\BackendController@show')->name('monitor.admin.show');
+Route::patch('/monitor/{city}', 'Monitor\BackendController@update')->name('monitor.admin.update');
 
 // City monitor status routes 
 Route::get('/{city}/accept', 'Monitor\Status\AcceptController@index')->name('charter.accept');

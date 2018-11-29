@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d0b32212e04d46194b66a0d6997a95c",
-    "content-hash": "3ff03dd7b15ffeb0dd5edc4184ac0ae5",
+    "hash": "1f51ae3844080d2612528326b17bf6b2",
+    "content-hash": "448f647ab79aee95e72770e94ac68a2c",
     "packages": [
         {
             "name": "activismebe/laravel-form-helpers",
@@ -63,6 +63,66 @@
                 "validation"
             ],
             "time": "2017-11-17 23:32:24"
+        },
+        {
+            "name": "b61/portal-make-user",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nuclear-campain/Make-user.git",
+                "reference": "8b2fbc9eae96d0e89788d803803082510ef75a95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nuclear-campain/Make-user/zipball/8b2fbc9eae96d0e89788d803803082510ef75a95",
+                "reference": "8b2fbc9eae96d0e89788d803803082510ef75a95",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "5.7.*",
+                "illuminate/console": "5.7.*",
+                "illuminate/database": "5.7.*",
+                "illuminate/notifications": "5.7.*",
+                "illuminate/support": "5.7.*",
+                "php": "^7.1.3",
+                "spatie/laravel-permission": "^2.27"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.7",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ActivismBE\\Artisan\\MakeUserServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ActivismBE\\Artisan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tim Joosten",
+                    "email": "Tim@activisme.be",
+                    "homepage": "https://www.activisme.be"
+                }
+            ],
+            "description": "An Artisan console command to create users in your Laravel application.",
+            "keywords": [
+                "artisan",
+                "console",
+                "laravel"
+            ],
+            "time": "2018-11-28 13:39:42"
         },
         {
             "name": "b61/seeders",

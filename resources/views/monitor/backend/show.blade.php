@@ -8,12 +8,15 @@
             @include ('monitor.partials.show-sidenav') {{-- Shared sidenav partial --}}
 
             <div class="col-md-9"> {{-- Content field --}}
-                <form method="POST" action="" class="card card-body">
-                    @csrf           {{-- Form field protection --}}
-                    @form($city)    {{-- Bind the city data to the form --}}
+                <form method="POST" action="{{ route('monitor.admin.update', $city) }}" class="card card-body">
+                    @csrf               {{-- Form field protection --}}
+                    @method('PATCH')    {{-- HTTP method spoofing --}}
+                    @form($city)        {{-- Bind the city data to the form --}}
 
                     <h6 class="border-bottom border-gray pb-2 mb-3">City information</h6>
             
+                    @include('flash::message') {{-- Flash session view partial --}}
+
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputName">Name <span class="text-danger">*</span></label>
@@ -22,9 +25,38 @@
                         </div>
 
                         <div class="form-group col-md-5">
-                            <div class="form-group col-md-4">
-                                <label for="inputProvince">Province <span class="text-danger">*</span></label>
-                            </div>
+                            <label for="inputProvince" for="inputProvince">Province <span class="text-danger">*</span></label>
+
+                            <select id="inputProvince" class="form-control @error('province', 'is-invalid')" @input('province')>
+                                @foreach ($provinces as $province) {{-- Loop through the province --}}
+                                    <option value="{{ $province->id }}" @if ($city->province_id === $province->id) selected @endif > 
+                                        {{ $province->name }} 
+                                    </option>
+                                @endforeach {{-- /// END province loop --}}
+                            </select>
+
+                            @error('province') {{-- Validation error view partial --}}   
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="postalCode">Postal code</label>
+                            <input id="postalCode" type="text" class="form-control" disabled value="{{ $city->postal->code }}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="inputLat">Latitude <span class="text-danger">*</span></label>
+
+                            <input id="inputLat" class="form-control @error('lat', 'is-invalid')" @input('lat') placeholder="Latitude from the city">
+                            @error('lat')
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="inputLng">Longtitude <span class="text-danger">*</span></label>
+
+                            <input id="inputLng" class="form-control @error('lng', 'is-invalid')" @input('lng') placeholder="Longtitude from the city">
+                            @error('lng')
                         </div>
                     </div>
 

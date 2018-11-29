@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Monitor;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{Request, RedirectResponse};
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Models\City;
 use App\Models\Province;
+use App\Http\Requests\Monitor\CityInformationValidator;
 
 /**
  * BackendController 
@@ -55,7 +56,28 @@ class BackendController extends Controller
      */
     public function show(City $city): View 
     {
-        $provinces = Province::pluck('name', 'id')->toArray();
+        $provinces = Province::all();
         return view('monitor.backend.show', compact('city', 'provinces'));
+    }
+
+    /**
+     * Method for updating the city information in the application. 
+     * ---- 
+     * The postal code can't be updated because it is used to connect data to it trough 
+     * the platform. 
+     * 
+     * @param  CityInformationValidation $input The form request class that handles the validation.  
+     * @param  City                      $city  The city entity from the storage.
+     * @return RedirectResponse
+     */
+    public function update(CityInformationValidator $input, City $city): RedirectResponse 
+    {
+        $input->merge(['province_id' => $input->province]);
+
+        if ($city->update($input->all())) {
+            $this->flashMessage->success("The city <strong>{$city->name}</strong> has been updated");
+        }
+
+        return redirect()->route('monitor.admin.show', $city);
     }
 }
