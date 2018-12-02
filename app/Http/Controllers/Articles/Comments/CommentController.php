@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Articles\Comments;
 use App\Models\Article;
 use Illuminate\Http\{Request, RedirectResponse};
 use App\Http\Controllers\Controller;
-use BeyondCode\Comments\Comment;
+use App\Models\Comment;
 use Illuminate\Contracts\View\View;
 
 /**

@@ -18,8 +18,10 @@
     </div>
 
     <div class="container">
+    @include('flash::message')
+
         <div class="row">
-            <form class="col-md-12" action="" method="POST">
+            <form class="col-md-12" action="{{ route('comment.report.store', $comment) }}" method="POST">
                 @csrf {{-- form field protection --}}
 
                 <div class="card card-body">
