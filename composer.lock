@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1f51ae3844080d2612528326b17bf6b2",
-    "content-hash": "448f647ab79aee95e72770e94ac68a2c",
+    "hash": "b8d087b38918e894f22a6037119358bb",
+    "content-hash": "72136a1a8c8b9b8b74f876054fdb5f03",
     "packages": [
         {
             "name": "activismebe/laravel-form-helpers",
@@ -63,6 +63,68 @@
                 "validation"
             ],
             "time": "2017-11-17 23:32:24"
+        },
+        {
+            "name": "b61/laravel-reportable",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nuclear-campain/Reportable.git",
+                "reference": "19077f9ea0ce50aef34285bdb7e954859d91958e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nuclear-campain/Reportable/zipball/19077f9ea0ce50aef34285bdb7e954859d91958e",
+                "reference": "19077f9ea0ce50aef34285bdb7e954859d91958e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.6",
+                "illuminate/support": "^5.6",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^5.0",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "ActivismBE\\Reportable\\ReportableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ActivismBE\\Reportable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.me",
+                    "homepage": "https://brianfaust.me"
+                }
+            ],
+            "description": "reportable Polymorphic Eloquent Models for Laravel 5",
+            "keywords": [
+                "Brian Faust",
+                "Laravel Reportable",
+                "faustbrian",
+                "framework",
+                "laravel",
+                "laravel-reportable"
+            ],
+            "time": "2018-12-02 10:03:15"
         },
         {
             "name": "b61/portal-make-user",
