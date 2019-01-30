@@ -73,10 +73,10 @@ class CommentController extends Controller
         // If comment has been updated successfully create a flash message 
         // And set it to the comment section from the controller that is attached to the comment.
         if ($comment->update($request->all())) {
-
+            $this->flashMessage->success('Your comment has been edited.');
         }
 
-        return redirect()->route();
+        return redirect()->to(route('article.show', $comment->commentable) . '#comments');
     }
 
     /**
