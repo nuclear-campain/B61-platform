@@ -60,6 +60,7 @@
             <div class="col-md-8"> {{-- Comment section --}}
                 <div class="card card-body mb-3">
                     <h6 class="border-bottom border-gray pb-1 mb-2"><a id="comments"></a>{{ $commentsCount }} Comments</h6>
+                    @include ('flash::message') {{-- Flash session view partial --}}
 
                     @forelse ($comments as $comment) {{-- Loop through the comments --}}
                         <div class="media small text-muted pt-2">
