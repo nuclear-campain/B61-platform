@@ -37,6 +37,10 @@ Route::post('/contact/send', 'ContactController')->name('contact.send');
 Route::get('/article/{article}', 'Articles\FrontendController@show')->name('article.show');
 Route::post('/article/{article}/comment', 'Articles\Comments\CommentController@comment')->name('article.comment');
 
+// Issue routes 
+Route::get('/issue/report', 'IssueController@create')->name('issue.report');
+Route::post('/issue/report', 'IssueController@store')->name('issue.report.store');
+
 // Comment routes
 Route::get('comment/delete/{comment}', 'Articles\Comments\CommentController@destroy')->name('comment.delete');
 Route::get('comment/edit/{comment}', 'Articles\Comments\CommentController@edit')->name('comment.edit');
