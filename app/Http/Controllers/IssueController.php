@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BugReported;
 use Illuminate\View\View;
-use App\Repositories\GithubRepository;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\{RedirectResponse, Request};
+use App\Repositories\FlashRepository;
 
 /**
- * Class IssueController
- * ---
- * Controller that allowing u!sers to report issues in the application. 
- * The controller Will Handle them and create them in our public Github Issue tracker. 
+ * Class IssueController 
  *  
  * @package App\Http\Controllers
  */
@@ -23,7 +22,6 @@ class IssueController extends Controller
      */
     public function __construct() 
     {
-        $this->github = new GithubRepository; 
         $this->middleware(['auth']);
     }
 
@@ -46,6 +44,9 @@ class IssueController extends Controller
     public function store(Request $input): RedirectResponse
     {
         $input->validate(['title' => 'required|string', 'body' => 'required|string']); 
+        
+        Mail::to(config('platform.webmaster.email'))->queue(new BugReported($input->all()));
+        (new FlashRepository)->success('Thank you for submitting a bug. Administrators will look after it ASAP.');
 
         return redirect()->route('issue.report');
     }
