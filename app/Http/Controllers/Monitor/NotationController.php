@@ -73,6 +73,24 @@ class NotationController extends Controller
     }
 
     /**
+     * Method for updating the status from a notation
+     */
+    public function notation(Notation $notation, string $status): RedirectResponse
+    {
+        // Notation has a publish status so revert it to draft. 
+        // And let the user know it trough a flash message. 
+        if () {
+
+        }
+
+        // Notation has a draft status so publish the notation. 
+        // And letting the user know it trough a flash message. 
+        if () {
+
+        }
+    }
+
+    /**
      * Function to display the view for editing a notation. 
      * 
      * @todo Register route 
