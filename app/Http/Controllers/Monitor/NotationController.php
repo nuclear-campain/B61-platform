@@ -73,21 +73,29 @@ class NotationController extends Controller
     }
 
     /**
-     * Method for updating the status from a notation
+     * Method for updating the status from a notation. 
+     * 
+     * @param  Notation  $notation The database entity from the notation. 
+     * @param  string    $status   The newly status indicator for the notation. 
+     * @return RedirectResponse
      */
-    public function notation(Notation $notation, string $status): RedirectResponse
+    public function status(Notation $notation, string $status): RedirectResponse
     {
         // Notation has a publish status so revert it to draft. 
         // And let the user know it trough a flash message. 
-        if () {
-
+        if ($status === 'draft') {
+            $notation->update(['status' => false]);
+            $this->flashMessage->info('The notation has been registered as draft.');
         }
 
         // Notation has a draft status so publish the notation. 
         // And letting the user know it trough a flash message. 
-        if () {
-
+        if ($status === 'publish') {
+            $notation->update(['status' => true]);
+            $this->flashMessage->info('The notation has been published.');
         }
+
+        return redirect()->route('monitor.notations', $notation->city);
     }
 
     /**

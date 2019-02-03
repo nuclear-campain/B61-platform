@@ -26,6 +26,7 @@ Route::post('/{city}/accept', 'Monitor\Status\AcceptController@store')->name('ch
 Route::get('/{city}/notations', 'Monitor\NotationController@index')->name('monitor.notations');
 Route::get('/{city}/notations/create', 'Monitor\NotationController@create')->name('monitor.notations.create');
 Route::post('/{city}/notations/create', 'Monitor\NotationController@store')->name('monitor.notations.store');
+Route::get('/notations/{notation}/{status}', 'Monitor\NotationController@status')->name('monitor.notations.status');
 Route::get('/notations/delete/{notation}', 'Monitor\NotationController@destroy')->name('monitor.notations.delete');
 
 // User Dashboard routes
