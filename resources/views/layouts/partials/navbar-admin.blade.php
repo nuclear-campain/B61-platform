@@ -15,3 +15,9 @@
         <i class="fe fe-file-text"></i> Articles
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="" class="nav-link">
+        <i class="fe fe-edit-3"></i> Petition
+    </a>
+</li>
