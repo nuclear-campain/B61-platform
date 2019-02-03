@@ -62,6 +62,23 @@ class BackendController extends Controller
     }
 
     /**
+     * Update the article statçus in the database storage. 
+     * 
+     * @param  Article $article The database entity from the news article
+     * @param  string  $status  The newly status for the news article
+     * @return RedirectResponse
+     */
+    public function status(Article $article, string $status): RedirectResponse
+    {
+        switch ($status) {
+            case 'draft':   $article->update(['is_draft' => true]);  break;
+            case 'publish': $article->update(['is_draft' => false]); break;
+        }
+
+        return redirect()->route('articles.dashboard');
+    }
+
+    /**
      * The create view for an article.
      *
      * @return View

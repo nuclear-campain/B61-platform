@@ -39,4 +39,6 @@ Route::get('/users/delete/undo/{user}', 'Account\UsersController@undoDeleteRoute
 Route::get('/articles/search', 'Articles\BackendController@search')->name('articles.search');
 Route::get('/articles/dashboard', 'Articles\BackendController@index')->name('articles.dashboard');
 Route::get('/articles/create', 'Articles\BackendController@create')->name('articles.create');
+Route::get('/articles/status/{article}/{status}', 'Articles\BackendController@status')->name('articles.status');
 Route::post('/articles/create', 'Articles\BackendController@store')->name('articles.store');
+Route::get('/articles/{article}/{status}', 'Articles\BackendController@status')->name('articles.status');

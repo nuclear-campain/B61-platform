@@ -71,9 +71,15 @@
                                             <i class="fe fe-eye"></i>
                                         </a>
 
-                                        <a href="" class="text-muted no-underline mr-1">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
+                                        @if ($article->is_draft) {{-- Article has draft status --}}
+                                            <a href="{{ route('articles.status', ['article' => $article, 'status' => 'publish']) }}" class="text-success no-underline mr-1">
+                                                <i class="fe fe-check"></i>
+                                            </a>  
+                                        @else {{-- Article has publish status --}}
+                                            <a href="{{ route('articles.status', ['article' => $article, 'status' => 'draft']) }}" class="text-danger no-underline mr-1">
+                                                <i class="fe fe-rotate-ccw"></i>
+                                            </a>
+                                        @endif {{-- /// END shortcut IF/ELSE --}}
 
                                         <a href="" class="text-danger no-underline">
                                             <i class="fe fe-x-circle"></i>
