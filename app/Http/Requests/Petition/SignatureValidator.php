@@ -31,9 +31,9 @@ class SignatureValidator extends FormRequest
     public function rules(): array
     {
         return [
-            'firstname'     => 'required|string|max:100',
-            'lastname'      => 'required|string|max:190',
-            'email'         => 'required|string|email|max:255|unique:signatures',
+            'firstname'     => 'required|string|max:30',
+            'lastname'      => 'required|string|max:80',
+            'email'         => 'required|string|email|max:191|unique:signatures',
             'postal'        => 'required|integer|max:4',
             'city'          => 'required|string|max:90',
             'country'       => 'required|string|max:30',

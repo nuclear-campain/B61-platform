@@ -24,9 +24,9 @@ class Signature extends Model
      *
      * @return BelongsTo
      */
-    public function cityInformation(): BelongsTo
+    public function city(): BelongsTo
     {
-        return $this->belongsTo(City::class, 'city')
+        return $this->belongsTo(City::class, 'postal')
             ->withDefault(['name' => 'Stad onbekend.']);
     }
 }

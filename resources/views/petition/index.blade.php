@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="form-group mb-2 col-4">
-                            <input type="text" aria-label="Your country" class="form-control @error('country', 'is_invalid') form-control-sm" placeholder="* Country" @input('country')>
+                            <input type="text" aria-label="Your country" class="form-control @error('country', 'is-invalid') form-control-sm" placeholder="* Country" @input('country')>
                             @error('country')
                         </div>
                     </div>
