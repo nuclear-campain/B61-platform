@@ -38,7 +38,6 @@ class SignatureController extends Controller
             $petition = Fragment::whereSlug('petition')->firstOrFail();
 
             // TODO: Create observer for attaching the city to it.
-            // TODO: Register mass-assign fields.
             $signature = new Signature($input->all());
 
             // TODO: Register signatures relation. (hasMany)

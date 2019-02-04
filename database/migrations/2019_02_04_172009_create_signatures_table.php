@@ -16,12 +16,13 @@ class CreateSignaturesTable extends Migration
      */
     public function up(): void
     {
-        // (1) Nullable because the Signature observer need
-        //     to fill in the relation after the create proces
+        // (1) Nullable because the Signature observer need to fill in the relation after the create proces
+        // (2) fragment_id is the integer that is used by the petition fragment.
 
         Schema::create('signatures', function (Blueprint $table): void {
             $table->increments('id');
             $table->unsignedInteger('postal')->nullable(); // (1)
+            $table->unsignedInteger('fragment_id')->nullable(); // (2)
             $table->string('firstname', 30);
             $table->string('lastname', 80);
             $table->string('email', 191);
@@ -31,6 +32,7 @@ class CreateSignaturesTable extends Migration
 
             // Foreign keys
             $table->foreign('postal')->references('id')->on('postals')->onDelete('set null');
+            $table->foreign('fragment_id')->references('id')->on('fragments');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Fragment
@@ -17,4 +18,14 @@ class Fragment extends Model
      * @var array
      */
     protected $fillable = ['title', 'slug', 'content'];
+
+    /**
+     * Data relation for all the signatures that are attached to the petition.
+     *
+     * @return HasMany
+     */
+    public function signatures(): HasMany
+    {
+        return $this->hasMany(Signature::class);
+    }
 }

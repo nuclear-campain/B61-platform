@@ -34,7 +34,7 @@ class SignatureValidator extends FormRequest
             'firstname'     => 'required|string|max:30',
             'lastname'      => 'required|string|max:80',
             'email'         => 'required|string|email|max:191|unique:signatures',
-            'postal'        => 'required|integer|max:4',
+            'postal'        => 'required|integer|max:9999',
             'city'          => 'required|string|max:90',
             'country'       => 'required|string|max:30',
         ];
