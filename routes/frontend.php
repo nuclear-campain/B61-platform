@@ -25,6 +25,9 @@ Route::get('/monitor/unfollow/{city}', 'Monitor\FollowController@unfollow')->nam
 Route::get('comments/report/{comment}', 'Articles\Comments\ReportController@create')->name('comment.report');
 Route::post('comments/report/{comment}', 'Articles\Comments\ReportController@store')->name('comment.report.store');
 
+// Petition routes
+Route::get('/petition', 'Petition\IndexController@index')->name('petition.index');
+
 // City monitor routes
 Route::get('/monitor', 'Monitor\FrontendController@index')->name('monitor.web.dashboard');
 Route::get('/monitor/{city}', 'Monitor\FrontendController@show')->name('monitor.web.city');
