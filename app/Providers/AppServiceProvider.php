@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\{Signature, Notation};
 use App\Composers\{MonitorComposer, DashboardComposer};
-use App\Models\Notation;
-use App\Observers\NotationObserver;
+use App\Observers\{SignatureObserver, NotationObserver};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Model observers 
         Notation::observe(NotationObserver::class);
+        Signature::observe(SignatureObserver::class);
     }
 
     /**

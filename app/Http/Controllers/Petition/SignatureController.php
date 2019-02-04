@@ -29,6 +29,8 @@ class SignatureController extends Controller
     /**
      * Method for saving a signature in the application.
      *
+     * @see \App\Observers\SignatureObserver::created()
+     *
      * @param  SignatureValidator $input The form request class that is responsible for the validation
      * @return RedirectResponse
      */
@@ -36,13 +38,10 @@ class SignatureController extends Controller
     {
         try { // Try to find the petition and store/attach the signature to it.
             $petition = Fragment::whereSlug('petition')->firstOrFail();
-
-            // TODO: Create observer for attaching the city to it.
             $signature = new Signature($input->all());
 
-            // TODO: Register signatures relation. (hasMany)
             if ($petition->signatures()->save($signature)) { // Signature has been saved and attached.
-
+                $this->flashMessage->success('We have saved your signature.', 'Petition signed!')->important();
             }
         }
 
