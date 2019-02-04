@@ -36,6 +36,7 @@ class SignatureValidator extends FormRequest
             'email'         => 'required|string|email|max:255|unique:signatures',
             'postal'        => 'required|integer|max:4',
             'city'          => 'required|string|max:90',
+            'country'       => 'required|string|max:30',
         ];
     }
 }

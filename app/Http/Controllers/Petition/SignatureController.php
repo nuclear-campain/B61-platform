@@ -29,8 +29,6 @@ class SignatureController extends Controller
     /**
      * Method for saving a signature in the application.
      *
-     * @todo Build up the validation -> PROGRESS
-     *
      * @param  SignatureValidator $input The form request class that is responsible for the validation
      * @return RedirectResponse
      */
