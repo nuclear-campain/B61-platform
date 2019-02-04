@@ -27,6 +27,7 @@ Route::post('comments/report/{comment}', 'Articles\Comments\ReportController@sto
 
 // Petition routes
 Route::get('/petition', 'Petition\IndexController@index')->name('petition.index');
+Route::post('/petition/sign', 'Petition\SignatureController@store')->name('petition.sign');
 
 // City monitor routes
 Route::get('/monitor', 'Monitor\FrontendController@index')->name('monitor.web.dashboard');
