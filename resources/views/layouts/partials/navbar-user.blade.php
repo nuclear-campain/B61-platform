@@ -5,7 +5,7 @@
 </li>
 
 <li class="nav-item">
-    <a class="nav-link">
+    <a href="{{ route('petition.index') }}" class="nav-link">
         Petition
     </a>
 </li>

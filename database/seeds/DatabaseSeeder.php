@@ -21,5 +21,6 @@ class DatabaseSeeder extends BaseSeeder
         // Run other seeds in the application. 
         $this->call(AclTableSeeder::class);
         $this->call(CityScaffoldingSeeder::class);
+        $this->call(FragmentSeeder::class);
     }
 }

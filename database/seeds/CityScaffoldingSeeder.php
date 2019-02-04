@@ -13,10 +13,12 @@ class CityScaffoldingSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @param  City      $cities    The resource model for the belgian cities
-     * @param  Province  $provinces The resource model for the belgian provinces
-     * @param  Postal    $postal    The resource model for the belgian postal codes.
-     * @param  Statement $stmt      The Class instance for the statement against the CSV source file. 
+     * @throws \League\Csv\Exception
+     *
+     * @param  City $cities The resource model for the belgian cities
+     * @param  Province $provinces The resource model for the belgian provinces
+     * @param  Postal $postal The resource model for the belgian postal codes.
+     * @param  Statement $stmt The Class instance for the statement against the CSV source file.
      * @return void
      */
     public function run(City $cities, Province $provinces, Postal $postal, Statement $stmt): void
