@@ -28,6 +28,9 @@ Route::get('/{city}/notations/create', 'Monitor\NotationController@create')->nam
 Route::post('/{city}/notations/create', 'Monitor\NotationController@store')->name('monitor.notations.store');
 Route::get('/notations/delete/{notation}', 'Monitor\NotationController@destroy')->name('monitor.notations.delete');
 
+// Petition routes
+Route::get('/petition', 'Petition\IndexController@edit')->name('petition.edit');
+
 // User Dashboard routes
 Route::get('/users', 'Account\UsersController@index')->name('users.web.dashboard');
 Route::get('/users/create', 'Account\UsersController@create')->name('users.create');

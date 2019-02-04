@@ -21,7 +21,7 @@
         <i class="fe fe-edit-3"></i> Petition
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{ route('petition.edit') }}">
             <i class="fe fe-file-text text-secondary mr-1"></i> Petition text
         </a>
         <a class="dropdown-item" href="#">
