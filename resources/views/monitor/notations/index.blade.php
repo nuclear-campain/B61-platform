@@ -38,11 +38,11 @@
                                     <td @if ($loop->first) class="border-top-0" @endif> {{-- Options --}}
                                         <span class="float-right">
                                             @if ($notation->status) {{-- The notation is published --}}
-                                                <a href="" class="no-underline text-danger mr-1">
+                                                <a href="{{ route('monitor.notations.status', ['notation' => $notation, 'status' => 'draft']) }}" class="no-underline text-danger mr-1">
                                                     <i class="fe fe-square"></i>
                                                 </a>
                                             @else {{-- Is not published --}}
-                                                <a href="" class="no-underline text-success mr-1">
+                                                <a href="{{ route('monitor.notations.status', ['notation' => $notation, 'status' => 'publish']) }}" class="no-underline text-success mr-1">
                                                     <i class="fe fe-check-square"></i>
                                                 </a>
                                             @endif
