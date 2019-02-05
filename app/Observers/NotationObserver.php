@@ -3,12 +3,12 @@
 namespace App\Observers;
 
 use App\Models\Notation;
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\Monitor\NotationNotification;
+use Illuminate\Support\Facades\Notification;
 
 /**
- * Class NotationObserver 
- * 
+ * Class NotationObserver
+ *
  * @package App\Observers
  */
 class NotationObserver
@@ -16,7 +16,7 @@ class NotationObserver
     /**
      * Handle the notation "created" event.
      *
-     * @param  Notation  $notation The notation entity that has been created in the storage. 
+     * @param  Notation  $notation The notation entity that has been created in the storage.
      * @return void
      */
     public function created(Notation $notation): void
@@ -24,7 +24,7 @@ class NotationObserver
         $user = auth()->user();
         $notation->author()->associate($user)->save();
 
-        if ($notation->status) { // The status = public. So send out notifications. 
+        if ($notation->status) { // The status = public. So send out notifications.
             $when = now()->addMinute();
             $city = $notation->city;
 

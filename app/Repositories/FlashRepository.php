@@ -13,20 +13,20 @@ use Laracasts\Flash\FlashNotifier;
 class FlashRepository implements FlashInterface
 {
     /**
-     * Flash a message. 
-     * 
-     * @param  string $message The actual flash message. 
+     * Flash a message.
+     *
+     * @param  string $message The actual flash message.
      * @param  string $title   The title for the flash message.
      * @return FlashNotifier
      */
     public function message(string $message, string $title): FlashNotifier
     {
-       return flash('<strong class="mr-2">' . $title . '</strong>' . $message);
+        return flash('<strong class="mr-2">' . $title . '</strong>' . $message);
     }
 
     /**
-     * Flash an danger message. 
-     * 
+     * Flash an danger message.
+     *
      * @param  string $message  The actual flash message
      * @param  string $title    The title for the flash message defaults to "Danger!"
      * @return FlashNotifier
@@ -37,9 +37,9 @@ class FlashRepository implements FlashInterface
     }
 
     /**
-     * Flash an warning message. 
-     * 
-     * @param  string $message  The actual flash message. 
+     * Flash an warning message.
+     *
+     * @param  string $message  The actual flash message.
      * @param  string $title    The title for the flash message. Defaults to "Warning!"
      * @return FlashNotifier
      */
@@ -49,9 +49,9 @@ class FlashRepository implements FlashInterface
     }
 
     /**
-     * Flash an success message. 
-     * 
-     * @param  string $message  The actual flash message. 
+     * Flash an success message.
+     *
+     * @param  string $message  The actual flash message.
      * @param  string $title    The title for the flash message. Defaults to "Success!"
      * @return FlashNotifier
      */
@@ -61,9 +61,9 @@ class FlashRepository implements FlashInterface
     }
 
     /**
-     * Flash an info message. 
-     * 
-     * @param  string $message  The actual flash message. 
+     * Flash an info message.
+     *
+     * @param  string $message  The actual flash message.
      * @param  string $title    The title for the flash message. Defaults to "Info!"
      * @return FlashNotifier
      */

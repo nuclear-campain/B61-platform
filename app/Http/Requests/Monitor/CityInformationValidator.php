@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class CityInformationValidator
- * 
+ *
  * @package App\Http\Requests\Monitor
  */
 class CityInformationValidator extends FormRequest
@@ -18,7 +18,7 @@ class CityInformationValidator extends FormRequest
      */
     public function authorize(): bool
     {
-        // Returns true because the authorization is handled with the controller middleware. 
+        // Returns true because the authorization is handled with the controller middleware.
         return true;
     }
 
@@ -30,9 +30,9 @@ class CityInformationValidator extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'required|string|max:191', 
-            'province'  => 'required', 
-            'lat'       => 'required|string', 
+            'name'      => 'required|string|max:191',
+            'province'  => 'required',
+            'lat'       => 'required|string',
             'lng'       => 'required|string'
         ];
     }

@@ -2,15 +2,13 @@
 
 namespace App\Notifications\Monitor;
 
+use App\Models\Notation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
-use App\Models\Notation;
 
 /**
- * Class NotationNotification 
- * 
+ * Class NotationNotification
+ *
  * @package App\Notifications\Monitor
  */
 class NotationNotification extends Notification
@@ -19,7 +17,7 @@ class NotationNotification extends Notification
 
     /**
      * The resource entity from the city that is attached to the notation.
-     * 
+     *
      * @var Notation $notation
      */
     public $notation;

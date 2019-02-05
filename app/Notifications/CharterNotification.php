@@ -4,13 +4,12 @@ namespace App\Notifications;
 
 use App\Models\City;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 /**
- * Class CharterNotification 
- * 
+ * Class CharterNotification
+ *
  * @package App\Notifications
  */
 class CharterNotification extends Notification implements ShouldQueue
@@ -18,29 +17,29 @@ class CharterNotification extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * Variable for the newly charter status. 
-     * 
+     * Variable for the newly charter status.
+     *
      * @return string
      */
     public $status;
 
     /**
-     * variable for the city that is attached to the charter. 
-     * 
+     * variable for the city that is attached to the charter.
+     *
      * @return City
      */
-    public $city; 
+    public $city;
 
     /**
      * Create a new notification instance.
      *
-     * @param  string $status   The newly status from the chapter. 
+     * @param  string $status   The newly status from the chapter.
      * @param  City   $city     The resource entity from the city that is attached to the chapter.
      * @return void
      */
     public function __construct(string $status, City $city)
     {
-        $this->status = $status; 
+        $this->status = $status;
         $this->city   = $city;
     }
 

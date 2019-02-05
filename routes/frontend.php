@@ -15,10 +15,10 @@ Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes(['verify' => true]);
 
-// City monitor following routes. 
+// City monitor following routes.
 
 Route::get('/monitor/following', 'Monitor\FollowController@index')->name('monitor.following');
-Route::get('/monitor/follow/{city}', 'Monitor\FollowController@follow')->name('city.follow'); 
+Route::get('/monitor/follow/{city}', 'Monitor\FollowController@follow')->name('city.follow');
 Route::get('/monitor/unfollow/{city}', 'Monitor\FollowController@unfollow')->name('city.unfollow');
 
 // Comment routes
@@ -37,7 +37,7 @@ Route::post('/contact/send', 'ContactController')->name('contact.send');
 Route::get('/article/{article}', 'Articles\FrontendController@show')->name('article.show');
 Route::post('/article/{article}/comment', 'Articles\Comments\CommentController@comment')->name('article.comment');
 
-// Issue routes 
+// Issue routes
 Route::get('/issue/report', 'IssueController@create')->name('issue.report');
 Route::post('/issue/report', 'IssueController@store')->name('issue.report.store');
 

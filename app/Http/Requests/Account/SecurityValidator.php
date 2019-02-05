@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Account;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
 /**

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Articles;
 
-use Gate;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\View;
 use App\Models\Article;
+use Gate;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
-use Illuminate\Http\RedirectResponse;
 
 /**
  * Class FrontendController

@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Province 
- * 
+ * Class Province
+ *
  * @package App\Models
  */
 class Province extends Model

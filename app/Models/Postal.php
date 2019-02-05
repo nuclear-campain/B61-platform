@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\MediaLibrary\HasMedia\{HasMedia, HasMediaTrait};
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
- * Class Postal 
- * 
+ * Class Postal
+ *
  * @package App\Models
  */
 class Postal extends Model implements HasMedia
@@ -23,8 +24,8 @@ class Postal extends Model implements HasMedia
     protected $fillable = ['code', 'charter_status'];
 
     /**
-     * Data relations for the cities that are connection to the postal code. 
-     * 
+     * Data relations for the cities that are connection to the postal code.
+     *
      * @return HasMany
      */
     public function cities(): HasMany

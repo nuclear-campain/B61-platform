@@ -2,45 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Notifications\DatabaseNotification;
 
 /**
  * Class NotificationController
- * 
+ *
  * @package App\Http\Controllers
  */
 class NotificationController extends Controller
 {
     /**
-     * NotificationController constructor. 
-     * 
-     * @return void 
+     * NotificationController constructor.
+     *
+     * @return void
      */
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         $this->middleware(['auth']);
     }
 
     /**
-     * Function for marking the given notification as read. 
-     * 
+     * Function for marking the given notification as read.
+     *
      * @todo Register route
-     * 
+     *
      * @param  DatabaseNotification $notification Resource entity from the notification.
      * @return RedirectResponse
      */
-    public function markAsRead(DatabaseNotification $notification): RedirectResponse 
+    public function markAsRead(DatabaseNotification $notification): RedirectResponse
     {
         $notification->markAsRead();
         return redirect()->back();
     }
 
     /**
-     * Get the index page for the notifications from the authenticated user. 
-     * 
+     * Get the index page for the notifications from the authenticated user.
+     *
      * @param  null|string $type The type of notifications that u want to display.
      * @return view
      */
