@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Http\Requests\ArticleValidator;
 use Illuminate\Contracts\View\View;
+use Mpociot\Reanimate\ReanimateModels;
 
 /**
  * Class BackendController
@@ -16,6 +17,8 @@ use Illuminate\Contracts\View\View;
  */
 class BackendController extends Controller
 {
+    use ReanimateModels; // Needed for undo operations on the articles.
+
     /**
      * BackendController constructor
      *
@@ -111,15 +114,14 @@ class BackendController extends Controller
      * @todo Implement route (View and routes file)
      * @todo Implement undo system
      *
+     * @throws \Exception When the article is not found in the application.
+     *
      * @param  Article $article The resource entity from the article in the storage.
      * @return RedirectResponse
      */
     public function destroy(Article $article): RedirectResponse
     {
-        if ($article->destroy()) {
-            $this->flashMessage->success("The article <strong>{$article->title}</strong> has been deleted.")->important();
-        }
-
+        $article->processDeleteRequest(); // Process the delete request from the user
         return redirect()->route('articles.dashboard');
     }
 }

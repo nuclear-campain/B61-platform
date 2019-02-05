@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\User;
+use App\Repositories\ArticleRepository;
 use CyrildeWit\EloquentViewable\Viewable;
-use Illuminate\Database\Eloquent\{Builder, Model, SoftDeletes};
+use Illuminate\Database\Eloquent\{Builder, SoftDeletes};
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use BeyondCode\Comments\Traits\HasComments;
 
@@ -13,7 +14,7 @@ use BeyondCode\Comments\Traits\HasComments;
  *
  * @package App\Models
  */
-class Article extends Model
+class Article extends ArticleRepository
 {
     use SoftDeletes, Viewable, HasComments;
 
