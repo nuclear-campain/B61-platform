@@ -42,7 +42,7 @@ class LoginController extends Controller
     /**
      * The user has logged out of the application.
      *
-     * @param  Request  $request The request information bag. 
+     * @param  Request  $request The request information bag.
      * @return mixed
      */
     protected function loggedOut(Request $request)

@@ -2,19 +2,19 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class BaseRequest 
- * 
+ * Class BaseRequest
+ *
  * @package App\Http\Requests
  */
 class BaseRequest extends FormRequest
 {
     /**
-     * The authentication guard. 
-     * 
+     * The authentication guard.
+     *
      * @var Guard $auth
      */
     protected $auth;

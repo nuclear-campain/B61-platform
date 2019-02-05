@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Monitor;
 
-use Illuminate\Http\{Request, RedirectResponse};
 use App\Http\Controllers\Controller;
-use App\Models\{City, Notation};
-use Illuminate\Contracts\View\View;
 use App\Http\Requests\Monitor\NotationValidator;
+use App\Models\City;
+use App\Models\Notation;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class NotationController
@@ -42,7 +44,7 @@ class NotationController extends Controller
      * Function for displaying the notation create view.
      *
      * @todo Implement status indicator
-     * 
+     *
      * @param  City $city The resource entity from the storage.
      * @return View
      */
@@ -56,7 +58,7 @@ class NotationController extends Controller
      * Method for storing a city notation in the application.
      *
      * @see \App\Observers\NotationObserver::created()
-     * 
+     *
      * @param  NotationValidator $input The form request class that handles the validation.
      * @param  City              $city  The resource entity from the storage.
      * @return RedirectResponse
@@ -73,23 +75,23 @@ class NotationController extends Controller
     }
 
     /**
-     * Method for updating the status from a notation. 
-     * 
-     * @param  Notation  $notation The database entity from the notation. 
-     * @param  string    $status   The newly status indicator for the notation. 
+     * Method for updating the status from a notation.
+     *
+     * @param  Notation  $notation The database entity from the notation.
+     * @param  string    $status   The newly status indicator for the notation.
      * @return RedirectResponse
      */
     public function status(Notation $notation, string $status): RedirectResponse
     {
-        // Notation has a publish status so revert it to draft. 
-        // And let the user know it trough a flash message. 
+        // Notation has a publish status so revert it to draft.
+        // And let the user know it trough a flash message.
         if ($status === 'draft') {
             $notation->update(['status' => false]);
             $this->flashMessage->info('The notation has been registered as draft.');
         }
 
-        // Notation has a draft status so publish the notation. 
-        // And letting the user know it trough a flash message. 
+        // Notation has a draft status so publish the notation.
+        // And letting the user know it trough a flash message.
         if ($status === 'publish') {
             $notation->update(['status' => true]);
             $this->flashMessage->info('The notation has been published.');
@@ -99,11 +101,11 @@ class NotationController extends Controller
     }
 
     /**
-     * Function to display the view for editing a notation. 
-     * 
-     * @todo Register route 
-     * 
-     * @param  Notation $notation The resource entity from the notation. 
+     * Function to display the view for editing a notation.
+     *
+     * @todo Register route
+     *
+     * @param  Notation $notation The resource entity from the notation.
      * @return RedirectResponse
      */
     public function edit(Notation $notation): View
@@ -112,8 +114,8 @@ class NotationController extends Controller
     }
 
     /**
-     * Method for deleting a notation in the application. 
-     * 
+     * Method for deleting a notation in the application.
+     *
      * @param  Notation $notation The resource entity from the notation in the storage.
      * @return RedirectResponse
      */
@@ -121,7 +123,7 @@ class NotationController extends Controller
     {
         if ($notation->delete()) {
             $this->flashMessage->info("The notation for {$notation->city->name} has been deleted.");
-        } 
+        }
 
         return redirect()->back(); // Redirect to the previous page.
     }

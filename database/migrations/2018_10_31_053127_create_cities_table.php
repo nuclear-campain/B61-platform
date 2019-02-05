@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateCitiesTable
@@ -24,7 +24,7 @@ class CreateCitiesTable extends Migration
             $table->string('lat');
             $table->string('lng');
 
-            // Foreign keys 
+            // Foreign keys
             $table->foreign('province_id')->references('id')->on('provinces')->onDelete('set null');
             $table->foreign('postal_id')->references('id')->on('postals')->onDelete('set null');
 

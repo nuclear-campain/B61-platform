@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class NotationValidator
- * 
+ *
  * @package App\Http\Requests\Monitor
  */
 class NotationValidator extends FormRequest
@@ -18,7 +18,7 @@ class NotationValidator extends FormRequest
      */
     public function authorize(): bool
     {
-        // This variable is registered as true because the controller 
+        // This variable is registered as true because the controller
         // Handles the authorization check.
 
         return true;

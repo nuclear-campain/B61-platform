@@ -9,8 +9,8 @@ use Illuminate\Database\Schema\Blueprint;
 class CreateReportsTable extends Migration
 {
     /**
-     * Run the migrations 
-     * 
+     * Run the migrations
+     *
      * @return void
      */
     public function up()
@@ -36,8 +36,8 @@ class CreateReportsTable extends Migration
     }
 
     /**
-     * Reverse the migrations. 
-     * 
+     * Reverse the migrations.
+     *
      * @return void
      */
     public function down()

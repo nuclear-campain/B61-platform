@@ -1,21 +1,21 @@
-<?php 
+<?php
 
-namespace App\Composers; 
+namespace App\Composers;
 
-use Illuminate\View\View;
 use App\Models\Postal;
+use Illuminate\View\View;
 
 /**
- * Class MonitorComposer 
- * 
+ * Class MonitorComposer
+ *
  * @package App\Composers
  */
 class MonitorComposer
 {
     /**
-     * Method for binding data to the view. 
-     * 
-     * @param  View $view The builder instance for the blade view. 
+     * Method for binding data to the view.
+     *
+     * @param  View $view The builder instance for the blade view.
      * @return void
      */
     public function compose(View $view): void
@@ -26,9 +26,9 @@ class MonitorComposer
     }
 
     /**
-     * Count all the postal codes that has the given charter status. 
-     * 
-     * @param  string $status The status form the charter. 
+     * Count all the postal codes that has the given charter status.
+     *
+     * @param  string $status The status form the charter.
      * @return string
      */
     protected function countCities(string $status): string
@@ -38,12 +38,12 @@ class MonitorComposer
     }
 
     /**
-     * Function for formatting the output number. 
-     * 
-     * @param  int $total the total amount of cities with the given status. 
+     * Function for formatting the output number.
+     *
+     * @param  int $total the total amount of cities with the given status.
      * @return string
      */
-    protected function formatTotal(int $total = 0): string 
+    protected function formatTotal(int $total = 0): string
     {
         return number_format($total);
     }

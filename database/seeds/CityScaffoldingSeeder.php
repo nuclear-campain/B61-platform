@@ -1,9 +1,12 @@
 <?php
 
-use App\Models\{City, Province, Postal};
-use League\Csv\{Reader, Statement};
+use App\Models\City;
+use App\Models\Postal;
+use App\Models\Province;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use League\Csv\Reader;
+use League\Csv\Statement;
 
 /**
  * Class CityScaffoldingSeeder
@@ -16,7 +19,7 @@ class CityScaffoldingSeeder extends Seeder
      * @param  City      $cities    The resource model for the belgian cities
      * @param  Province  $provinces The resource model for the belgian provinces
      * @param  Postal    $postal    The resource model for the belgian postal codes.
-     * @param  Statement $stmt      The Class instance for the statement against the CSV source file. 
+     * @param  Statement $stmt      The Class instance for the statement against the CSV source file.
      * @return void
      */
     public function run(City $cities, Province $provinces, Postal $postal, Statement $stmt): void
@@ -30,7 +33,7 @@ class CityScaffoldingSeeder extends Seeder
                 $postalCode = $postal->firstOrCreate(['code' => $city['postal']]);
                 $cityInformation = $cities->firstOrCreate($this->cityInformation($city));
 
-                // Relation attachment 
+                // Relation attachment
                 $cityInformation->province()->associate($province)->save();
                 $postalCode->cities()->save($cityInformation);
             }, 4); // 4 = Amount of dead locks before Exception.
@@ -39,11 +42,11 @@ class CityScaffoldingSeeder extends Seeder
 
     /**
      * Function for assambling the array that contains the data for an city
-     * 
-     * @param  array $city The resource array that comes from the csv source file. 
+     *
+     * @param  array $city The resource array that comes from the csv source file.
      * @return array
      */
-    private function cityInformation(array $city): array 
+    private function cityInformation(array $city): array
     {
         return ['name' => $city['name'], 'lat' => $city['lat'], 'lng' => $city['lng']];
     }

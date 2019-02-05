@@ -3,13 +3,13 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 /**
- * Cmass LoginCreated 
- * 
+ * Cmass LoginCreated
+ *
  * @package App\Notifications
  */
 class LoginCreated extends Notification implements ShouldQueue
@@ -17,8 +17,8 @@ class LoginCreated extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * The variable that holdds all the form inputs. 
-     * 
+     * The variable that holdds all the form inputs.
+     *
      * @var array $input
      */
     public $input;
@@ -26,7 +26,7 @@ class LoginCreated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
-     * @param  array $input The variable that holds the form request inputs. 
+     * @param  array $input The variable that holds the form request inputs.
      * @return void
      */
     public function __construct(array $input)
@@ -35,11 +35,11 @@ class LoginCreated extends Notification implements ShouldQueue
     }
 
     /**
-     * Get the notification's delivery channels. 
-     * 
+     * Get the notification's delivery channels.
+     *
      * @return array
      */
-    public function via(): array 
+    public function via(): array
     {
         return ['mail'];
     }
@@ -47,7 +47,7 @@ class LoginCreated extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed $notifiable Accessor variable for the user information. 
+     * @param  mixed $notifiable Accessor variable for the user information.
      * @return MailMessage
      */
     public function toMail($notifiable): MailMessage

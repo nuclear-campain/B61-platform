@@ -7,7 +7,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
  * Class UserPolicy
- * 
+ *
  * @package App\Policies
  */
 class UserPolicy
@@ -15,10 +15,10 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine if the given user is the same as the given user. 
+     * Determine if the given user is the same as the given user.
      *
-     * @param  User  $authUser  The authenticated user entity. 
-     * @param  User  $userModel The user entity given from the users model. 
+     * @param  User  $authUser  The authenticated user entity.
+     * @param  User  $userModel The user entity given from the users model.
      * @return bool
      */
     public function sameUser(User $authUser, User $userModel): bool

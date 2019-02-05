@@ -5,11 +5,10 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 /**
- * Class BugReported 
- * 
+ * Class BugReported
+ *
  * @package App\Mail
  */
 class BugReported extends Mailable
@@ -17,8 +16,8 @@ class BugReported extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * The variable that holds all the contact form data. 
-     * 
+     * The variable that holds all the contact form data.
+     *
      * @var array $inputs
      */
     public $inputs;

@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\User;
-use CyrildeWit\EloquentViewable\Viewable;
-use Illuminate\Database\Eloquent\{Builder, Model, SoftDeletes};
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use BeyondCode\Comments\Traits\HasComments;
+use CyrildeWit\EloquentViewable\Viewable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Article
