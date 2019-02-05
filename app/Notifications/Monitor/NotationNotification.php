@@ -27,7 +27,7 @@ class NotationNotification extends Notification
     /**
      * Create a new notification instance.
      *
-     * @param  
+     * @param  Notation The database entity from the notation.
      * @return void
      */
     public function __construct(Notation $notation)

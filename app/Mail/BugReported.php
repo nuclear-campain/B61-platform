@@ -19,7 +19,7 @@ class BugReported extends Mailable
     /**
      * The variable that holds all the contact form data. 
      * 
-     * @var ContactValidator $inputs
+     * @var array $inputs
      */
     public $inputs;
 
