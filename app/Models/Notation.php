@@ -31,8 +31,8 @@ class Notation extends Model
     }
 
     /**
-     * Data relation for the city that is connected to the notation. 
-     * 
+     * Data relation for the city that is connected to the notation.
+     *
      * @return BelongsTo
      */
     public function city(): BelongsTo

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Account;
 
-use Gate;
-use Illuminate\Http\{RedirectResponse, Request};
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\View;
-use App\User;
-use Spatie\Permission\Models\Role;
 use App\Http\Requests\Users\CreateValidator;
 use App\Notifications\LoginCreated;
+use App\User;
+use Gate;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Mpociot\Reanimate\ReanimateModels;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class UsersController

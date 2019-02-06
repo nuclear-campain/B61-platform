@@ -1,23 +1,22 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\View\View; 
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserRepository
- * 
+ *
  * @package App\Repositories
  */
 class UserRepository extends Authenticatable
 {
     /**
-     * UserRepository Constructor. 
-     * 
-     * @param  array $attributes. Variables for form input attributes to create a new record. 
+     * UserRepository Constructor.
+     *
+     * @param  array $attributes. Variables for form input attributes to create a new record.
      * @return void
      */
     public function __construct(array $attributes = [])
@@ -27,13 +26,13 @@ class UserRepository extends Authenticatable
 
     /**
      * Function for processing deletion requests (users)
-     * 
+     *
      * @throws \Exception instance of ModelNotFoundException when the user is not found.
-     * 
+     *
      * @param  Request $request The request information collection bag.
      * @return void
      */
-    public function processDeleteRequest(Request $request): void 
+    public function processDeleteRequest(Request $request): void
     {
         if ($this->validateRequest($request->confirmation) && $this->delete()) {
             // Confirmation is valid && User has been deleted in the system.
@@ -46,11 +45,11 @@ class UserRepository extends Authenticatable
 
     /**
      * Confirm that the value from the confirmation input is the same as the auth user his password.
-     * 
-     * @param  string $password The user given password from the form. 
+     *
+     * @param  string $password The user given password from the form.
      * @return bool
      */
-    private function validateRequest(string $password): bool 
+    private function validateRequest(string $password): bool
     {
         return Hash::check($password, auth()->user()->getAuthPassword());
     }

@@ -5,8 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ContactValidator 
- * 
+ * Class ContactValidator
+ *
  * @package App\Http\Requests
  */
 class ContactValidator extends FormRequest

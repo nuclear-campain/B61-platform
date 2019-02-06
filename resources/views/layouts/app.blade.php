@@ -12,6 +12,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    {{-- Favicons --}}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{  asset('favicon.ico') }}" type="image/x-icon">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
@@ -71,6 +75,12 @@
                                             <i class="fe fe-home mr-1 text-secondary"></i> Admin panel
                                         </a>
                                     @endif
+
+                                    <a class="dropdown-item" href="{{ route('issue.report') }}">
+                                        <i class="fe fe-alert-octagon mr-1 text-secondary"></i> Report bug
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
 
                                     <a class="dropdown-item" href="{{ route('account.settings') }}">
                                         <i class="fe fe-sliders mr-1 text-secondary"></i> Settings

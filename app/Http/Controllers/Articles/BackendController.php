@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Articles;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
-use App\Models\Article;
 use App\Http\Requests\ArticleValidator;
+use App\Models\Article;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class BackendController
@@ -29,7 +29,7 @@ class BackendController extends Controller
 
     /**
      * Get the management dashboard for the news articles in the application.
-     * 
+     *
      * @param  Request $request  The request information collection instance.
      * @param  Article $articles The resource model for the article storage.
      * @return View
@@ -47,18 +47,35 @@ class BackendController extends Controller
 
     /**
      * Method for getting the result from the search in the application
-     * 
-     * @param  Request $request  The request information collection instance. 
-     * @param  Article $articles The resource model for the article storage. 
-     * @return View 
+     *
+     * @param  Request $request  The request information collection instance.
+     * @param  Article $articles The resource model for the article storage.
+     * @return View
      */
-    public function search(Request $request, Article $articles): View 
+    public function search(Request $request, Article $articles): View
     {
-        $term     = $request->search; // Map the given user input to the term variable. 
+        $term     = $request->search; // Map the given user input to the term variable.
         $articles = $articles->where('title', 'LIKE', "%{$term}%")->orWhere('content', 'LIKE', "%{$term}%")
             ->orderBy('created_at', 'DESC')->simplePaginate();
 
         return view('articles.dashboard', compact('articles'));
+    }
+
+    /**
+     * Update the article statçus in the database storage.
+     *
+     * @param  Article $article The database entity from the news article
+     * @param  string  $status  The newly status for the news article
+     * @return RedirectResponse
+     */
+    public function status(Article $article, string $status): RedirectResponse
+    {
+        switch ($status) {
+            case 'draft':   $article->update(['is_draft' => true]);  break;
+            case 'publish': $article->update(['is_draft' => false]); break;
+        }
+
+        return redirect()->route('articles.dashboard');
     }
 
     /**

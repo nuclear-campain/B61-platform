@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests\Users;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
 /**
- * Class CreateValidator 
- * 
+ * Class CreateValidator
+ *
  * @package App\Http\Requests\Users
  */
 class CreateValidator extends BaseRequest

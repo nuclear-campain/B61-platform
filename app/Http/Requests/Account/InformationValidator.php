@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Account;
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class InformationValidator

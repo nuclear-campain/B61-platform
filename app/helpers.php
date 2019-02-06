@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 if (! function_exists('avatar')) {
-    function avatar($userEntity) {
+    function avatar($userEntity)
+    {
         $image = $userEntity->getFirstMediaUrl('user-'. $userEntity->id, 'avatar');
         
         if (! empty($image)) {

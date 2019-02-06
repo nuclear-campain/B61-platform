@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
 use App\Models\Article;
 use App\User;
+use Illuminate\Contracts\View\View;
 
 /**
- * Class HomeController 
- * 
+ * Class HomeController
+ *
  * @package App\Http\Controllers
  */
 class HomeController extends Controller
@@ -25,12 +24,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Get the application his welcome page. 
-     * 
-     * @param  Article $article The model entity for getting the first 3 articles in the storage. 
-     * @return View 
+     * Get the application his welcome page.
+     *
+     * @param  Article $article The model entity for getting the first 3 articles in the storage.
+     * @return View
      */
-    public function welcome(Article $article): View 
+    public function welcome(Article $article): View
     {
         return view('welcome', ['articles' => $article->whereIsDraft(false)->take(3)->latest()->get()]);
     }

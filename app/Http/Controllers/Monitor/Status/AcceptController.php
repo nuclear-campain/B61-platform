@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers\Monitor\Status;
 
-use App\Models\City;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\{Request, RedirectResponse};
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class StatusController
  * ----
- * Controller that handles the chapter declarations from cities in the application. 
- * The only status can be accepted of rejected. 
- * 
+ * Controller that handles the chapter declarations from cities in the application.
+ * The only status can be accepted of rejected.
+ *
  * @package App\Http\Controllers\Monitor
  */
 class AcceptController extends Controller
 {
     /**
-     * StatusController constructor 
-     * 
+     * StatusController constructor
+     *
      * @return void
      */
-    public function __construct() 
+    public function __construct()
     {
-        parent::__construct(); // Initiate base controller for the controllers. 
+        parent::__construct(); // Initiate base controller for the controllers.
         $this->middleware(['auth', 'role:admin']);
     }
 
     /**
-     * Method for register an city as accepted. 
-     * 
-     * @param  City $city The storage resource entity form the city. 
-     * @return View|RedirectResponse 
+     * Method for register an city as accepted.
+     *
+     * @param  City $city The storage resource entity form the city.
+     * @return View|RedirectResponse
      */
     public function index(City $city)
     {
@@ -45,10 +46,10 @@ class AcceptController extends Controller
     }
 
     /**
-     * Store the charter status 'accept' in the sto-rage with the declaration. 
-     * 
+     * Store the charter status 'accept' in the sto-rage with the declaration.
+     *
      * @param  Request $request The collection bag for the request information.
-     * @param  City    $city    The resource entity form the given city. 
+     * @param  City    $city    The resource entity form the given city.
      * @return RedirectResponse
      */
     public function store(Request $request, City $city): RedirectResponse

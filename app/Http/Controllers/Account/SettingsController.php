@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Http\Requests\Account\{InformationValidator, SecurityValidator};
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Account\InformationValidator;
+use App\Http\Requests\Account\SecurityValidator;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Class SettingsController
- * 
+ *
  * @package App\Http\Controllers\Account
  */
 class SettingsController extends Controller
 {
     /**
-     * SettingsController constructor 
+     * SettingsController constructor
      *
      * @return void
      */
@@ -27,9 +27,9 @@ class SettingsController extends Controller
     }
 
     /**
-     * Function for displaying the account settings pages. 
-     * 
-     * @param  null|string $type The type of settings page the user wants to display. 
+     * Function for displaying the account settings pages.
+     *
+     * @param  null|string $type The type of settings page the user wants to display.
      * @return View
      */
     public function index(?string $type = null): View
@@ -51,7 +51,7 @@ class SettingsController extends Controller
         $user = $this->auth->user();
 
         if ($user->update($input->all())) {
-            $user->clearMediaCollection("user-{$user->id}"); 
+            $user->clearMediaCollection("user-{$user->id}");
             $user->addMediaFromRequest('avatar')->toMediaCollection("user-{$user->id}");
             
             $this->flashMessage->success('Your account information has been updated!')->important();
@@ -64,7 +64,7 @@ class SettingsController extends Controller
      * Update the account security settings.
      *
      * @todo Extra security layer -> User needs to give his current password for updating the user password.
-     * 
+     *
      * @param  SecurityValidator $input The form request class that handles the validation.
      * @return RedirectResponse
      */

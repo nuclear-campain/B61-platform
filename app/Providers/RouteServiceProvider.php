@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -52,14 +52,14 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/frontend.php'));
     }
 
-     /**
-     * Define the "backend" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapBackendRoutes() 
+    /**
+    * Define the "backend" routes for the application.
+    *
+    * These routes all receive session state, CSRF protection, etc.
+    *
+    * @return void
+    */
+    protected function mapBackendRoutes()
     {
         Route::prefix('admin')
             ->middleware('web')

@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use App\Repositories\CityRepository;
 use App\Interfaces\CityInterface;
-use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo};
+use App\Repositories\CityRepository;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 
 /**
- * Class City 
- * 
+ * Class City
+ *
  * @package App\Models
  */
 class City extends CityRepository implements CityInterface
@@ -20,12 +21,12 @@ class City extends CityRepository implements CityInterface
      * The attributes that are mass assignable.
      *
      * @var array
-     */ 
-    protected $fillable = ['name', 'lat', 'lng'];
+     */
+    protected $fillable = ['name', 'province_id', 'lat', 'lng'];
 
     /**
-     * Data relation for setting/getting the province from the city. 
-     * 
+     * Data relation for setting/getting the province from the city.
+     *
      * @return BelongsTo
      */
     public function province(): BelongsTo
@@ -34,8 +35,8 @@ class City extends CityRepository implements CityInterface
     }
 
     /**
-     * Data relation for getting the notations from the given city. 
-     * 
+     * Data relation for getting the notations from the given city.
+     *
      * @return HasMany
      */
     public function notations(): HasMany
@@ -44,8 +45,8 @@ class City extends CityRepository implements CityInterface
     }
 
     /**
-     * Data relation for getting the postal code that is attached to the city. 
-     * 
+     * Data relation for getting the postal code that is attached to the city.
+     *
      * @return BelongsTo
      */
     public function postal(): BelongsTo
